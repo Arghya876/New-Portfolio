@@ -33,7 +33,7 @@ export default function ContactTerminal() {
     switch (cmd) {
       case 'help':
         newHistory.push({
-          text: 'Available Commands:\n  about     - Brief background description\n  projects  - Highlight key chapters\n  resume    - Trigger CV document download\n  socials   - Display LinkedIn & GitHub handles\n  clear     - Wipe command terminal history\n  neofetch  - Print system configuration statistics',
+          text: 'Available Commands:\n  about     - Brief background description\n  projects  - Highlight key chapters\n  resume    - Trigger CV document download\n  socials   - Display LinkedIn & GitHub handles\n  clear     - Wipe command terminal history\n  info      - Print system configuration statistics',
           type: 'output'
         })
         break
@@ -68,9 +68,9 @@ export default function ContactTerminal() {
         setTerminalHistory([])
         setTerminalInput('')
         return
-      case 'neofetch':
+      case 'info':
         newHistory.push({
-          text: 'guest@arghya.dev\n----------------\nOS: React Ecosystem v19\nHost: B.Tech Information Technology\nKernel: Node.js / Vite / Tailwind v4\nUptime: 2022 - 2026 (4 Years)\nShell: Antigravity-Terminal-Shell\nDE: Framer Motion / Lenis Smooth\nIDE: VS Code\nCPU: Core MERN Processor\nMemory: 16GB Passion / 512GB Motivation',
+          text: 'arghya@arghya.dev\n----------------\nOS: React / Node.js Ecosystem\nHost: Arghya Bhattacharjee\nEducation: B.Tech in Information Technology\nKernel: Vite + Tailwind CSS v4\nUptime: 2022 - 2026 (4 Years Journey)\nShell: arghya-terminal-sh\nDE: Framer Motion / Lenis Smooth\nIDE: VS Code\nCPU: Core MERN & AI Engine\nMemory: 16GB Passion / 512GB Motivation',
           type: 'output'
         })
         break
@@ -166,7 +166,7 @@ export default function ContactTerminal() {
               type="text"
               value={terminalInput}
               onChange={(e) => setTerminalInput(e.target.value)}
-              placeholder="type 'help' or 'neofetch'..."
+              placeholder="type 'help' or 'info'..."
               className="flex-1 bg-transparent text-gray-100 focus:outline-none placeholder-gray-700 font-mono text-xs"
             />
           </form>

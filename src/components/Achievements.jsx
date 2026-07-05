@@ -1,14 +1,45 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
+import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
-import { FaBook, FaCodeBranch, FaFire } from 'react-icons/fa'
+import { FaBook, FaCodeBranch, FaFire, FaAward } from 'react-icons/fa'
 
 const certs = [
-  { title: 'JIS Samman Academic Award', issuer: 'JIS College of Eng', xp: '500 XP', img: '/images/Achivement/jis%20samman.webp', color: '#ffbd00' },
-  { title: 'AI-Based Safety Patent Published', issuer: 'Patent Office India', xp: '500 XP', img: '/images/Achivement/Patent.webp', color: '#ff0055' },
-  { title: 'Google Cybersecurity Certificate', issuer: 'Google Certifications', xp: '450 XP', img: '/images/google_cert.webp', color: '#4285f4' },
-  { title: 'NPTEL Java Gold Medalist', issuer: 'IIT Roorkee', xp: '400 XP', img: '/images/nptel_cert.webp', color: '#00f0ff' },
-  { title: 'ISRO Geospatial Technology', issuer: 'IIRS - ISRO Program', xp: '350 XP', img: '/images/isro_cert.webp', color: '#39ff14' },
-  { title: 'JavaScript Essentials Cert', issuer: 'Cisco Networking Acad', xp: '300 XP', img: '/images/achievement_badge.webp', color: '#f7df1e' }
+  { 
+    title: 'Patent File', 
+    issuer: 'Patent Office India', 
+    xp: '500 XP', 
+    img: '/images/Achivement/Patent.webp', 
+    color: '#ff0055',
+    description: '🎉 Excited to announce that our patent for the "AI-Based LPG Gas Leakage Detection and Fire Alert System Notification" was officially published on April 19, 2024! 🚨 This innovative technology combines LPG gas detection with fire alert mechanisms and real-time WhatsApp notifications to significantly enhance home safety.',
+    pdf: '/images/Achivement/Patent file.webp'
+  },
+  { 
+    title: 'Google Cybersecurity Certificate', 
+    issuer: 'Google Certifications', 
+    xp: '450 XP', 
+    img: '/images/google_cert.webp', 
+    color: '#4285f4',
+    description: 'Professional certification demonstrating competence in security analyst tools, network defense, threat hunting, and incident response frameworks.'
+  },
+  { 
+    title: 'JavaScript Essentials 1', 
+    issuer: 'Cisco', 
+    xp: '300 XP', 
+    img: '/images/achievement_badge.webp', 
+    color: '#f7df1e',
+    description: 'Cisco, in collaboration with OpenEDG JS Institute, verifies the earner of this badge successfully completed the JavaScript Essentials 1 course and achieved the student level credentials. Earners know the syntax of the core JavaScript; can work with variables, operators, flow control, and functions; know the basics of data types system; think algorithmically and can analyze problems using a programmatic conceptual apparatus; and can design, develop, and improve simple JavaScript programs.',
+    credlyId: '87b37e93-3087-48ff-a193-e836dc99e086',
+    pdf: '/JavaScriptEssentials1.pdf'
+  },
+  { 
+    title: 'JIS Samman Award', 
+    issuer: 'JIS College of Engineering', 
+    xp: '500 XP', 
+    img: '/images/Achivement/jis%20samman.webp', 
+    color: '#ffbd00',
+    description: 'Awarded for securing 1st place in the Guitar Competition at JIS College of Engineering, recognizing exceptional musical performance and artistic talent.'
+  }
 ]
 
 const stats = [
@@ -37,9 +68,151 @@ const generateContributions = () => {
   return grid
 }
 
+function CertDetailModal({ cert, onClose }) {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [onClose])
+
+  const handleConfetti = (e) => {
+    e.stopPropagation()
+    // Trigger confetti from the center of the screen with zIndex above modal (which has z-9999)
+    confetti({
+      particleCount: 80,
+      spread: 70,
+      origin: { x: 0.5, y: 0.5 },
+      colors: [cert.color, '#ffffff', '#bd00ff'],
+      zIndex: 100000
+    })
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+        className="relative w-full max-w-2xl bg-[#0e0a24]/95 border border-theme-border/80 rounded-2xl p-6 md:p-8 cursor-default flex flex-col md:flex-row gap-6 shadow-2xl glass-panel text-left overflow-y-auto max-h-[90vh]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-theme-muted hover:text-theme-text text-lg cursor-pointer transition-all active:scale-90"
+          title="Close"
+        >
+          ✕
+        </button>
+
+        {/* Left Side: Badge Display / Credly Embed */}
+        <div className="flex flex-col items-center justify-center shrink-0 w-full md:w-48">
+          {cert.credlyId ? (
+            <div className="relative w-[150px] h-[270px] bg-theme-card/50 rounded-lg flex items-center justify-center border border-theme-border/40 overflow-hidden shadow-inner">
+              <iframe
+                src={`https://www.credly.com/embedded_badge/${cert.credlyId}`}
+                width="150"
+                height="270"
+                frameBorder="0"
+                scrolling="no"
+                title={`${cert.title} Badge`}
+                className="w-full h-full"
+              />
+            </div>
+          ) : cert.pdf ? (
+            <a
+              href={cert.pdf}
+              target="_blank"
+              rel="noreferrer"
+              className="w-36 h-36 rounded-xl overflow-hidden shadow-lg border border-theme-border/50 cursor-pointer image-highlight hover:scale-105 transition-transform duration-350 block relative group"
+              title={cert.pdf.endsWith('.pdf') ? 'Click to view original certificate PDF' : 'Click to view patent file'}
+            >
+              <img
+                src={cert.img}
+                alt={cert.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
+                <span className="text-[9px] font-mono text-white bg-cyber-blue px-2 py-1 rounded">
+                  {cert.pdf.endsWith('.pdf') ? 'View PDF' : 'View File'}
+                </span>
+              </div>
+            </a>
+          ) : (
+            <div
+              className="w-36 h-36 rounded-xl overflow-hidden shadow-lg border border-theme-border/50 cursor-pointer image-highlight"
+              onClick={handleConfetti}
+            >
+              <img
+                src={cert.img}
+                alt={cert.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+          
+          <span className="inline-block px-2.5 py-1 rounded bg-cyber-yellow/10 text-cyber-yellow text-[10px] font-mono font-bold mt-4">
+            {cert.xp} Earned
+          </span>
+        </div>
+
+        {/* Right Side: Credential Details */}
+        <div className="flex-1 flex flex-col justify-between">
+          <div>
+            <span className="text-[10px] font-mono text-theme-muted uppercase tracking-widest block mb-1">
+              Credential Details
+            </span>
+            <h4 className="text-xl md:text-2xl font-extrabold text-theme-text font-sans leading-tight">
+              {cert.title}
+            </h4>
+            <span 
+              className="text-xs font-mono font-bold block mt-1 uppercase tracking-wider" 
+              style={{ color: cert.color }}
+            >
+              {cert.issuer}
+            </span>
+
+            <p className="text-xs md:text-sm text-theme-muted mt-4 leading-relaxed font-sans font-medium">
+              {cert.description}
+            </p>
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a
+              href={cert.pdf || cert.img}
+              target="_blank"
+              rel="noreferrer"
+              className="px-4 py-2 rounded-lg bg-cyber-blue text-white text-xs font-mono font-bold hover:bg-cyber-blue/80 active:scale-95 transition-all shadow cursor-pointer text-center"
+            >
+              {cert.pdf && cert.pdf.endsWith('.pdf') 
+                ? 'View PDF Certificate' 
+                : cert.title === 'Patent File' 
+                  ? 'View Patent File' 
+                  : 'View Certificate'}
+            </a>
+            <button
+              onClick={handleConfetti}
+              className="px-4 py-2 rounded-lg border border-theme-border bg-theme-card/40 hover:border-theme-text/20 text-theme-text text-xs font-mono font-bold active:scale-95 transition-all cursor-pointer"
+            >
+              Celebrate 🎉
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
 export default function Achievements() {
   const [gridData, setGridData] = useState([])
   const [tooltip, setTooltip] = useState({ show: false, text: '', x: 0, y: 0 })
+  const [selectedCert, setSelectedCert] = useState(null)
 
   useEffect(() => {
     setGridData(generateContributions())
@@ -94,7 +267,9 @@ export default function Achievements() {
         {/* Left Column: Gamified Certifications (7 columns) */}
         <div className="lg:col-span-7">
           <div className="flex items-center gap-3 mb-6">
-            <img src="/images/achievement_badge.webp" className="w-8 h-8 object-cover rounded-lg image-highlight" alt="" />
+            <span className="text-2xl text-cyber-yellow animate-pulse">
+              <FaAward />
+            </span>
             <h4 className="text-sm font-mono tracking-widest text-theme-muted uppercase font-bold">
               Unlocked Credentials
             </h4>
@@ -105,19 +280,38 @@ export default function Achievements() {
               return (
                 <div
                   key={c.title}
-                  onClick={(e) => triggerConfetti(e, c.color)}
+                  onClick={(e) => {
+                    triggerConfetti(e, c.color)
+                    setSelectedCert(c)
+                  }}
                   className="p-4 rounded-xl glass-panel border border-theme-border flex gap-4 items-center cursor-pointer hover:border-theme-text/20 select-none active:scale-[0.98] transition-all animate-float"
                   style={{ animationDelay: `${idx * 0.2}s` }}
                 >
-                  <div
-                    className="w-14 h-14 rounded-lg overflow-hidden shrink-0 image-highlight"
-                  >
-                    <img
-                      src={c.img}
-                      alt={c.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  {c.credlyId ? (
+                    <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 image-highlight flex items-center justify-center bg-transparent relative">
+                      <div className="absolute w-[150px] h-[150px] top-[-5px] flex items-center justify-center scale-[0.37] origin-top">
+                        <iframe
+                          src={`https://www.credly.com/embedded_badge/${c.credlyId}`}
+                          width="150"
+                          height="270"
+                          frameBorder="0"
+                          scrolling="no"
+                          title={`${c.title} Badge`}
+                          className="pointer-events-none"
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <div
+                      className="w-14 h-14 rounded-lg overflow-hidden shrink-0 image-highlight"
+                    >
+                      <img
+                        src={c.img}
+                        alt={c.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
                   <div className="min-w-0 flex-1 text-left">
                     <h5 className="text-xs font-bold text-theme-text truncate" title={c.title}>
                       {c.title}
@@ -209,6 +403,25 @@ export default function Achievements() {
         >
           {tooltip.text}
         </div>
+      )}
+
+      {/* Lightbox / Certificate Details Modal */}
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {selectedCert && (
+            <motion.div
+              key="cert-detail-modal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-[9999]"
+            >
+              <CertDetailModal cert={selectedCert} onClose={() => setSelectedCert(null)} />
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
       )}
     </section>
   )
