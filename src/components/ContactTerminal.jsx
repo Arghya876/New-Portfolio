@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { FaTerminal, FaLinkedin, FaGithub, FaEnvelope, FaFileDownload, FaArrowRight } from 'react-icons/fa'
+import { FaTerminal, FaLinkedin, FaGithub, FaEnvelope, FaFileDownload, FaArrowRight, FaFacebook, FaInstagram } from 'react-icons/fa'
 
 export default function ContactTerminal() {
   const [terminalHistory, setTerminalHistory] = useState([
@@ -33,7 +33,7 @@ export default function ContactTerminal() {
     switch (cmd) {
       case 'help':
         newHistory.push({
-          text: 'Available Commands:\n  about     - Brief background description\n  projects  - Highlight key chapters\n  resume    - Trigger CV document download\n  socials   - Display LinkedIn & GitHub handles\n  clear     - Wipe command terminal history\n  info      - Print system configuration statistics',
+          text: 'Available Commands:\n  about     - Brief background description\n  projects  - Highlight key chapters\n  resume    - Trigger CV document download\n  socials   - Display connected social profile handles\n  clear     - Wipe command terminal history\n  info      - Print system configuration statistics',
           type: 'output'
         })
         break
@@ -60,7 +60,7 @@ export default function ContactTerminal() {
         break
       case 'socials':
         newHistory.push({
-          text: 'LinkedIn: linkedin.com/in/arghya-bhattacharjee876\nGitHub: github.com/Arghya876\nEmail: arghyabhattacharjee876@gmail.com',
+          text: 'LinkedIn: linkedin.com/in/arghya-bhattacharjee876\nGitHub: github.com/Arghya876\nFacebook: facebook.com/arghya.bhattacharjee876\nInstagram: instagram.com/arghya.bhattacharjee876\nEmail: arghyabhattacharjee876@gmail.com',
           type: 'output'
         })
         break
@@ -248,6 +248,12 @@ export default function ContactTerminal() {
             </a>
             <a href="https://github.com/Arghya876" target="_blank" rel="noreferrer" className="hover:text-theme-text transition-colors" title="GitHub">
               <FaGithub />
+            </a>
+            <a href="https://www.facebook.com/arghya.bhattacharjee876" target="_blank" rel="noreferrer" className="hover:text-theme-text transition-colors" title="Facebook">
+              <FaFacebook />
+            </a>
+            <a href="https://www.instagram.com/arghya.bhattacharjee876/" target="_blank" rel="noreferrer" className="hover:text-theme-text transition-colors" title="Instagram">
+              <FaInstagram />
             </a>
             <a href="mailto:arghyabhattacharjee876@gmail.com" className="hover:text-theme-text transition-colors" title="Email Direct">
               <FaEnvelope />

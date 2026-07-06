@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaSun, FaMoon } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaSun, FaMoon, FaFacebook, FaInstagram } from 'react-icons/fa'
 
 const navSections = [
   { id: 'hero', label: 'Intro' },
@@ -157,6 +157,24 @@ export default function Navbar() {
                 <FaLinkedin />
               </a>
               <a
+                href="https://www.facebook.com/arghya.bhattacharjee876"
+                target="_blank"
+                rel="noreferrer"
+                className="text-theme-muted hover:text-theme-text transition-colors text-lg"
+                title="Facebook Profile"
+              >
+                <FaFacebook />
+              </a>
+              <a
+                href="https://www.instagram.com/arghya.bhattacharjee876/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-theme-muted hover:text-theme-text transition-colors text-lg"
+                title="Instagram Profile"
+              >
+                <FaInstagram />
+              </a>
+              <a
                 href="./Arghya_Bhattacharjee_CV.pdf"
                 download="Arghya_Bhattacharjee_CV.pdf"
                 className="flex items-center gap-2 px-3 py-1.5 rounded-md border border-cyber-blue/30 text-cyber-blue hover:bg-cyber-blue/10 text-xs font-mono tracking-wider transition-all"
@@ -233,6 +251,12 @@ export default function Navbar() {
               </a>
               <a href="https://www.linkedin.com/in/arghya-bhattacharjee876/" target="_blank" rel="noreferrer" className="hover:text-theme-text">
                 <FaLinkedin />
+              </a>
+              <a href="https://www.facebook.com/arghya.bhattacharjee876" target="_blank" rel="noreferrer" className="hover:text-theme-text">
+                <FaFacebook />
+              </a>
+              <a href="https://www.instagram.com/arghya.bhattacharjee876/" target="_blank" rel="noreferrer" className="hover:text-theme-text">
+                <FaInstagram />
               </a>
               <a href="mailto:arghyabhattacharjee876@gmail.com" className="hover:text-theme-text">
                 <FaEnvelope />
