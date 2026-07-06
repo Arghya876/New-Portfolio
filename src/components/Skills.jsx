@@ -9,7 +9,7 @@ import {
   SiTensorflow, SiOpencv, 
   SiGit, SiGithub, SiArduino, SiDocker
 } from 'react-icons/si'
-import { FaJava, FaCss3Alt, FaCode, FaServer, FaBrain, FaChevronLeft, FaChevronRight, FaPlay, FaPause } from 'react-icons/fa'
+import { FaJava, FaCss3Alt, FaCode, FaServer, FaBrain, FaChevronLeft, FaChevronRight, FaPlay, FaPause, FaFacebook, FaInstagram } from 'react-icons/fa'
 
 const categories = [
   { id: 'languages', name: 'Languages' },
@@ -517,6 +517,27 @@ export default function Skills() {
           <p className="text-sm text-theme-muted mt-2 max-w-xl mx-auto leading-relaxed">
             A view into the creative hobbies and physical arts that inspire my technical perspectives. Click any card to view original uncropped works.
           </p>
+          <div className="flex items-center justify-center gap-4 mt-4 text-theme-muted text-lg">
+            <span className="text-[10px] font-mono tracking-wider uppercase text-theme-muted/80">Connect creative side:</span>
+            <a 
+              href="https://www.facebook.com/arghya.bhattacharjee876" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="hover:text-cyber-blue transition-colors hover:scale-110 active:scale-95 duration-200"
+              title="Creative Facebook"
+            >
+              <FaFacebook />
+            </a>
+            <a 
+              href="https://www.instagram.com/arghya.bhattacharjee876/" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="hover:text-cyber-pink transition-colors hover:scale-110 active:scale-95 duration-200"
+              title="Creative Instagram"
+            >
+              <FaInstagram />
+            </a>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
