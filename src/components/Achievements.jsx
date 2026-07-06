@@ -15,28 +15,69 @@ const certs = [
     pdf: '/images/Achivement/Patent file.webp'
   },
   { 
-    title: 'Google Cybersecurity Certificate', 
-    issuer: 'Google Certifications', 
-    xp: '450 XP', 
-    img: '/images/google_cert.webp', 
-    color: '#4285f4',
-    description: 'Professional certification demonstrating competence in security analyst tools, network defense, threat hunting, and incident response frameworks.'
-  },
-  { 
     title: 'JavaScript Essentials 1', 
     issuer: 'Cisco', 
     xp: '300 XP', 
-    img: '/images/achievement_badge.webp', 
+    img: '/images/Achivement/achievement_badge.webp', 
     color: '#f7df1e',
     description: 'Cisco, in collaboration with OpenEDG JS Institute, verifies the earner of this badge successfully completed the JavaScript Essentials 1 course and achieved the student level credentials. Earners know the syntax of the core JavaScript; can work with variables, operators, flow control, and functions; know the basics of data types system; think algorithmically and can analyze problems using a programmatic conceptual apparatus; and can design, develop, and improve simple JavaScript programs.',
     credlyId: '87b37e93-3087-48ff-a193-e836dc99e086',
-    pdf: '/JavaScriptEssentials1.pdf'
+    pdf: '/images/Achivement/JavaScriptEssentials1.pdf'
+  },
+  { 
+    title: 'Google Cybersecurity Professional Certificate', 
+    issuer: 'Google Certifications', 
+    xp: '450 XP', 
+    img: '/images/Achivement/Google Cybersecurity.webp', 
+    color: '#4285f4',
+    description: `Completed by Arghya Bhattacharjee
+July 22, 2024
+
+Approximately 6 months at 7 hours a week to complete
+Arghya Bhattacharjee's account is verified. Coursera certifies their successful completion of Google Google Cybersecurity Specialization.
+
+Course Certificates Completed:
+- Foundations of Cybersecurity
+- Play It Safe: Manage Security Risks
+- Connect and Protect: Networks and Network Security
+- Tools of the Trade: Linux and SQL
+- Assets, Threats, and Vulnerabilities
+- Sound the Alarm: Detection and Response
+- Automate Cybersecurity Tasks with Python
+- Put It to Work: Prepare for Cybersecurity Jobs`,
+    pdf: 'https://www.coursera.org/account/accomplishments/professional-cert/2BUG8CUCP75S'
+  },
+  { 
+    title: 'Google AI Essentials', 
+    issuer: 'Google', 
+    xp: '350 XP', 
+    img: '/images/Achivement/Google AI Essentials.webp', 
+    color: '#0f9d58',
+    description: `Completed by Arghya Bhattacharjee
+Google Issued Jul 2024
+
+Earners of this certificate have developed foundational skills in Generative AI. They understand how to write effective prompts, use AI tools to boost productivity, and apply artificial intelligence responsibly.`,
+    pdf: 'https://www.coursera.org/account/accomplishments/certificate/L8Y3WSJG8KMH'
+  },
+  { 
+    title: 'Google Cloud Arcade', 
+    issuer: 'Google Cloud Skills Boost', 
+    xp: '400 XP', 
+    img: '/images/Achivement/Google Cloud Arcade.webp', 
+    color: '#00a1e0',
+    description: `Issued Mar 2024 · Expires Jul 2024
+Credential ID: 8860f905-2ec3-4425-a837-af8e286bf4a0
+
+Thrilled to receive some amazing swag from Google Cloud! 🎮💻
+
+Feeling excited and motivated after diving into the Arcade platform. Learning and growing with hands-on experiences in cloud computing has been truly rewarding. A big thank you to Google Cloud for the awesome gear—backpack, t-shirt, and more! Ready to continue the cloud journey. ☁️🚀`,
+    pdf: 'https://www.skills.google/public_profiles/8860f905-2ec3-4425-a837-af8e286bf4a0'
   },
   { 
     title: 'JIS Samman Award', 
     issuer: 'JIS College of Engineering', 
     xp: '500 XP', 
-    img: '/images/Achivement/jis%20samman.webp', 
+    img: '/images/Achivement/jis samman.webp', 
     color: '#ffbd00',
     description: 'Awarded for securing 1st place in the Guitar Competition at JIS College of Engineering, recognizing exceptional musical performance and artistic talent.'
   }
@@ -79,11 +120,18 @@ function CertDetailModal({ cert, onClose }) {
 
   const handleConfetti = (e) => {
     e.stopPropagation()
-    // Trigger confetti from the center of the screen with zIndex above modal (which has z-9999)
+    let x = 0.5
+    let y = 0.5
+    if (e.currentTarget) {
+      const rect = e.currentTarget.getBoundingClientRect()
+      x = (rect.left + rect.width / 2) / window.innerWidth
+      y = (rect.top + rect.height / 2) / window.innerHeight
+    }
+    // Trigger confetti from the button position with zIndex above modal (which has z-9999)
     confetti({
       particleCount: 80,
       spread: 70,
-      origin: { x: 0.5, y: 0.5 },
+      origin: { x, y },
       colors: [cert.color, '#ffffff', '#bd00ff'],
       zIndex: 100000
     })
@@ -131,7 +179,7 @@ function CertDetailModal({ cert, onClose }) {
               target="_blank"
               rel="noreferrer"
               className="w-36 h-36 rounded-xl overflow-hidden shadow-lg border border-theme-border/50 cursor-pointer image-highlight hover:scale-105 transition-transform duration-350 block relative group"
-              title={cert.pdf.endsWith('.pdf') ? 'Click to view original certificate PDF' : 'Click to view patent file'}
+              title={cert.pdf.endsWith('.pdf') ? 'Click to view original certificate PDF' : cert.title === 'Patent File' ? 'Click to view patent file' : 'Click to view credential'}
             >
               <img
                 src={cert.img}
@@ -140,7 +188,7 @@ function CertDetailModal({ cert, onClose }) {
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
                 <span className="text-[9px] font-mono text-white bg-cyber-blue px-2 py-1 rounded">
-                  {cert.pdf.endsWith('.pdf') ? 'View PDF' : 'View File'}
+                  {cert.pdf.endsWith('.pdf') ? 'View PDF' : cert.pdf.startsWith('http') ? 'View Link' : 'View File'}
                 </span>
               </div>
             </a>
@@ -178,7 +226,7 @@ function CertDetailModal({ cert, onClose }) {
               {cert.issuer}
             </span>
 
-            <p className="text-xs md:text-sm text-theme-muted mt-4 leading-relaxed font-sans font-medium">
+            <p className="text-xs md:text-sm text-theme-muted mt-4 leading-relaxed font-sans font-medium whitespace-pre-line">
               {cert.description}
             </p>
           </div>
@@ -188,7 +236,7 @@ function CertDetailModal({ cert, onClose }) {
               href={cert.pdf || cert.img}
               target="_blank"
               rel="noreferrer"
-              className="px-4 py-2 rounded-lg bg-cyber-blue text-white text-xs font-mono font-bold hover:bg-cyber-blue/80 active:scale-95 transition-all shadow cursor-pointer text-center"
+              className="px-4 py-2 rounded-lg bg-cyber-blue text-white text-xs font-mono font-bold hover:bg-cyber-blue/80 active:opacity-90 transition-all shadow cursor-pointer text-center"
             >
               {cert.pdf && cert.pdf.endsWith('.pdf') 
                 ? 'View PDF Certificate' 
@@ -198,7 +246,7 @@ function CertDetailModal({ cert, onClose }) {
             </a>
             <button
               onClick={handleConfetti}
-              className="px-4 py-2 rounded-lg border border-theme-border bg-theme-card/40 hover:border-theme-text/20 text-theme-text text-xs font-mono font-bold active:scale-95 transition-all cursor-pointer"
+              className="px-4 py-2 rounded-lg border border-theme-border bg-theme-card/40 hover:border-theme-text/20 text-theme-text text-xs font-mono font-bold active:opacity-80 transition-all cursor-pointer"
             >
               Celebrate 🎉
             </button>
