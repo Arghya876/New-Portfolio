@@ -172,6 +172,7 @@ export default function ProjectsStory() {
                   <img
                     src={project.image}
                     alt={project.title}
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500 filter brightness-95"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />

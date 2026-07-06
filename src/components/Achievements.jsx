@@ -356,6 +356,7 @@ export default function Achievements() {
                       <img
                         src={c.img}
                         alt={c.title}
+                        loading="lazy"
                         className="w-full h-full object-cover"
                       />
                     </div>

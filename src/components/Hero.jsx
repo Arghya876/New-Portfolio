@@ -249,6 +249,7 @@ export default function Hero() {
                 <img
                   src="/images/profile_pic.webp"
                   alt="Arghya Bhattacharjee"
+                  fetchPriority="high"
                   className={`w-full h-full object-cover rounded-full transition-all duration-700 ease-out ${frontLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
                   onLoad={() => setFrontLoaded(true)}
                 />
@@ -273,6 +274,7 @@ export default function Hero() {
                 <img
                   src="/images/Avatar.webp"
                   alt="Arghya Avatar"
+                  fetchPriority="high"
                   className={`w-full h-full object-cover rounded-full transition-all duration-700 ease-out ${backLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
                   onLoad={() => setBackLoaded(true)}
                 />

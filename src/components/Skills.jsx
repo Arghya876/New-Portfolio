@@ -127,6 +127,7 @@ function PassionCarousel({ cover, slides, isActive }) {
       <img
         src={cover}
         alt="Cover Image"
+        loading="lazy"
         className="w-full h-full object-cover select-none pointer-events-none"
       />
     )
@@ -153,6 +154,7 @@ function PassionCarousel({ cover, slides, isActive }) {
             <img
               src={s}
               alt=""
+              loading="lazy"
               className="w-full h-full object-cover select-none pointer-events-none"
             />
           </div>
@@ -389,7 +391,7 @@ function LightboxModal({ gallery, onClose }) {
               idx === index ? 'border-cyber-blue scale-105 shadow-lg' : 'border-white/10 opacity-40 hover:opacity-100'
             }`}
           >
-            <img src={slide} className="w-full h-full object-cover select-none pointer-events-none" alt="" />
+            <img src={slide} loading="lazy" className="w-full h-full object-cover select-none pointer-events-none" alt="" />
           </button>
         ))}
       </div>

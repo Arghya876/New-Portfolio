@@ -63,6 +63,7 @@ export default function Journey() {
               <img
                 src="/images/laptop_pic.webp"
                 alt="Workspace Laptop"
+                loading="lazy"
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
