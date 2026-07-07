@@ -171,6 +171,8 @@ function CertDetailModal({ cert, onClose }) {
                 scrolling="no"
                 title={`${cert.title} Badge`}
                 className="w-full h-full"
+                sandbox="allow-scripts allow-popups allow-same-origin"
+                allow="accelerometer 'none'; gyroscope 'none'; geolocation 'none'; camera 'none'; microphone 'none';"
               />
             </div>
           ) : cert.pdf ? (
@@ -346,6 +348,8 @@ export default function Achievements() {
                           scrolling="no"
                           title={`${c.title} Badge`}
                           className="pointer-events-none"
+                          sandbox="allow-scripts allow-popups allow-same-origin"
+                          allow="accelerometer 'none'; gyroscope 'none'; geolocation 'none'; camera 'none'; microphone 'none';"
                         />
                       </div>
                     </div>

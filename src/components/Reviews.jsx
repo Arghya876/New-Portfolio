@@ -37,13 +37,21 @@ export default function Reviews() {
 
   // Fetch reviews from backend
   const fetchReviews = async () => {
+    const isLocal = typeof window !== 'undefined' && 
+      (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+
+    if (!isLocal) {
+      setReviews(fallbackReviews)
+      return
+    }
+
     try {
       const response = await fetch(API_URL)
       if (response.ok) {
         const data = await response.json()
         setReviews(data)
       } else {
-        throw new Error('Server returned non-ok status')
+        setReviews(fallbackReviews)
       }
     } catch (err) {
       console.warn('Backend server offline. Loading fallback seed reviews.', err)
@@ -64,6 +72,25 @@ export default function Reviews() {
 
     setLoading(true)
     setMsg({ success: true, text: '' })
+
+    const isLocal = typeof window !== 'undefined' && 
+      (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+
+    if (!isLocal) {
+      // Simulate locally in production to avoid Local Network Access security prompts
+      const mockNewReview = {
+        _id: Date.now().toString(),
+        name: formData.name,
+        service: formData.service,
+        rating: formData.rating,
+        comment: formData.comment
+      }
+      setReviews(prev => [mockNewReview, ...prev])
+      setMsg({ success: true, text: 'Demonstration Mode: Review added locally (Running on production).' })
+      setFormData({ name: '', email: '', service: 'MERN Stack Applications', rating: 5, comment: '' })
+      setLoading(false)
+      return
+    }
 
     try {
       const response = await fetch(API_URL, {
@@ -178,6 +205,8 @@ export default function Reviews() {
                   <button
                     key={star}
                     type="button"
+                    id={`rev-rating-star-${star}`}
+                    aria-label={`Rate ${star} star${star > 1 ? 's' : ''}`}
                     onClick={() => setFormData({ ...formData, rating: star })}
                     className="text-lg transition-transform hover:scale-125 focus:outline-none cursor-pointer"
                   >
@@ -204,6 +233,8 @@ export default function Reviews() {
             <button
               type="submit"
               disabled={loading}
+              id="rev-submit-btn"
+              aria-label="Post my client review feedback"
               className="mt-2 py-2 rounded bg-gradient-to-r from-cyber-purple to-cyber-blue text-white font-mono text-xs tracking-wider uppercase font-semibold flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all cursor-pointer"
             >
               <FaPaperPlane className="text-[10px]" /> {loading ? 'Submitting...' : 'Post Review'}

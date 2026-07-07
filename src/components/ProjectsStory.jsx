@@ -102,14 +102,20 @@ function ProjectCarousel({ images, title, onImageClick }) {
   const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
-    if (images.length <= 1 || isHovered) return
+    if (images.length <= 1 || !isHovered) return
 
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % images.length)
-    }, 3000)
+    }, 2500)
 
     return () => clearInterval(interval)
   }, [images, isHovered])
+
+  useEffect(() => {
+    if (!isHovered) {
+      setActiveIndex(0)
+    }
+  }, [isHovered])
 
   return (
     <div 
@@ -139,6 +145,7 @@ function ProjectCarousel({ images, title, onImageClick }) {
           {images.map((_, idx) => (
             <button
               key={idx}
+              id={`projects-carousel-dot-${title.toLowerCase().replace(/\s+/g, '-')}-${idx}`}
               onClick={(e) => {
                 e.stopPropagation()
                 setActiveIndex(idx)
@@ -149,6 +156,7 @@ function ProjectCarousel({ images, title, onImageClick }) {
                   : 'bg-white/40 hover:bg-white/75'
               }`}
               title={`Go to slide ${idx + 1}`}
+              aria-label={`Go to slide ${idx + 1}`}
             />
           ))}
         </div>
@@ -230,6 +238,8 @@ function LightboxModal({ project, onClose }) {
           e.stopPropagation()
           onClose()
         }}
+        id="projects-lightbox-close-btn"
+        aria-label="Close lightbox modal"
         className="absolute top-4 right-4 z-50 flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-black/75 hover:bg-cyber-blue text-white text-base font-bold transition-all cursor-pointer shadow-lg active:scale-95 hover:scale-105"
         title="Close Gallery"
       >
@@ -257,6 +267,8 @@ function LightboxModal({ project, onClose }) {
                 e.stopPropagation()
                 setIsAutoPlaying(!isAutoPlaying)
               }}
+              id="projects-lightbox-autoplay-btn"
+              aria-label={isAutoPlaying ? "Pause automatic slide transition" : "Start automatic slide transition"}
               className={`px-2.5 py-1 rounded flex items-center gap-1.5 text-[10px] md:text-xs font-mono border transition-all cursor-pointer ${
                 isAutoPlaying 
                   ? 'border-cyber-green bg-cyber-green/10 text-cyber-green'
@@ -295,6 +307,8 @@ function LightboxModal({ project, onClose }) {
             {/* Left Arrow Button */}
             <button
               onClick={handlePrev}
+              id="projects-lightbox-prev-btn"
+              aria-label="View previous project screenshot"
               className="absolute left-2 md:left-4 z-30 bg-black/60 hover:bg-cyber-blue text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all cursor-pointer active:scale-95 border border-white/10 shadow-lg hover:scale-105"
             >
               <FaChevronLeft size={18} />
@@ -303,6 +317,8 @@ function LightboxModal({ project, onClose }) {
             {/* Right Arrow Button */}
             <button
               onClick={handleNext}
+              id="projects-lightbox-next-btn"
+              aria-label="View next project screenshot"
               className="absolute right-2 md:right-4 z-30 bg-black/60 hover:bg-cyber-blue text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all cursor-pointer active:scale-95 border border-white/10 shadow-lg hover:scale-105"
             >
               <FaChevronRight size={18} />
@@ -323,11 +339,13 @@ function LightboxModal({ project, onClose }) {
               setIsAutoPlaying(false)
               setIndex(idx)
             }}
+            id={`projects-lightbox-thumb-${idx}`}
+            aria-label={`Jump to project screenshot ${idx + 1}`}
             className={`w-14 h-14 rounded overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
               idx === index ? 'border-cyber-blue scale-105 shadow-lg' : 'border-white/10 opacity-40 hover:opacity-100'
             }`}
           >
-            <img src={slide} loading="lazy" className="w-full h-full object-cover select-none pointer-events-none" alt="" />
+            <img src={slide} loading="lazy" className="w-full h-full object-cover select-none pointer-events-none" alt={`Thumbnail of screenshot ${idx + 1}`} />
           </button>
         ))}
       </div>
@@ -419,7 +437,9 @@ export default function ProjectsStory() {
                     <a
                       href={project.github}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
+                      id={`projects-codebase-link-${project.title.toLowerCase().replace(/\s+/g, '-')}`}
+                      aria-label={`Access source codebase for ${project.title}`}
                       className="flex items-center gap-2 text-[10px] font-mono tracking-wider border border-theme-border px-3.5 py-2 rounded bg-theme-card/30 hover:bg-cyber-blue/15 text-theme-text transition-all cursor-pointer"
                     >
                       <FaGithub /> CODEBASE
@@ -428,7 +448,9 @@ export default function ProjectsStory() {
                       <a
                         href={project.demo}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
+                        id={`projects-demo-link-${project.title.toLowerCase().replace(/\s+/g, '-')}`}
+                        aria-label={`Visit live deployed demonstration for ${project.title}`}
                         className="flex items-center gap-2 text-[10px] font-mono tracking-wider border border-theme-border px-3.5 py-2 rounded bg-theme-card/30 hover:bg-cyber-purple/15 text-theme-text transition-all cursor-pointer"
                       >
                         <FaExternalLinkAlt /> LIVE DEMO

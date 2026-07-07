@@ -150,6 +150,8 @@ export default function Hero() {
           >
             <button
               onClick={handleScrollNext}
+              id="explore-journey-btn"
+              aria-label="Explore my professional journey timeline"
               className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyber-purple to-cyber-blue text-white font-mono text-xs tracking-wider font-semibold shadow-sm hover:scale-[1.02] transition-all cursor-pointer"
             >
               EXPLORE JOURNEY
@@ -159,6 +161,8 @@ export default function Hero() {
                 const contactSection = document.getElementById('contact')
                 if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' })
               }}
+              id="hire-me-btn"
+              aria-label="Scroll down to the contact section to hire me"
               className="px-5 py-2.5 rounded-lg border border-theme-border text-theme-muted hover:text-theme-text font-mono text-xs tracking-wider hover:bg-theme-card/50 transition-all cursor-pointer"
             >
               HIRE ME
@@ -304,6 +308,8 @@ export default function Hero() {
 
       <motion.button
         onClick={handleScrollNext}
+        id="scroll-down-btn"
+        aria-label="Scroll down to the next section"
         className="absolute bottom-8 z-10 flex flex-col items-center gap-1 cursor-pointer text-theme-muted hover:text-cyber-blue transition-colors focus:outline-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

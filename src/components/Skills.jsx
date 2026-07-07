@@ -103,7 +103,7 @@ const passions = [
   }
 ]
 
-function PassionCarousel({ cover, slides, isActive }) {
+function PassionCarousel({ cover, slides, isActive, title }) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   // Automatic slide cycle for preview card
@@ -126,7 +126,7 @@ function PassionCarousel({ cover, slides, isActive }) {
     return (
       <img
         src={cover}
-        alt="Cover Image"
+        alt={`${title} cover preview`}
         loading="lazy"
         className="w-full h-full object-cover select-none pointer-events-none"
       />
@@ -153,7 +153,7 @@ function PassionCarousel({ cover, slides, isActive }) {
           <div key={idx} className="w-full h-full shrink-0 relative">
             <img
               src={s}
-              alt=""
+              alt={`${title} work preview ${idx + 1}`}
               loading="lazy"
               className="w-full h-full object-cover select-none pointer-events-none"
             />
@@ -164,12 +164,16 @@ function PassionCarousel({ cover, slides, isActive }) {
       {/* Manual Controls on PC/Desktop Preview Card */}
       <button
         onClick={handlePrev}
+        id={`hobby-carousel-prev-btn-${title.toLowerCase().replace(/\s+/g, '-')}`}
+        aria-label="Previous slide preview"
         className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-cyber-blue text-white w-7 h-7 rounded-full flex items-center justify-center transition-all opacity-0 group-hover/carousel:opacity-100 cursor-pointer active:scale-90 border border-white/10 z-20 shadow"
       >
         <FaChevronLeft size={10} />
       </button>
       <button
         onClick={handleNext}
+        id={`hobby-carousel-next-btn-${title.toLowerCase().replace(/\s+/g, '-')}`}
+        aria-label="Next slide preview"
         className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-cyber-blue text-white w-7 h-7 rounded-full flex items-center justify-center transition-all opacity-0 group-hover/carousel:opacity-100 cursor-pointer active:scale-90 border border-white/10 z-20 shadow"
       >
         <FaChevronRight size={10} />
@@ -201,7 +205,7 @@ function PassionCard({ p, idx, onOpenLightbox }) {
     >
       {/* Polaroid photo frame with hover zoom indicator */}
       <div className="aspect-square w-full overflow-hidden rounded-lg image-highlight relative shadow-sm h-64 sm:h-auto">
-        <PassionCarousel cover={p.img} slides={p.slides} isActive={isActive} />
+        <PassionCarousel cover={p.img} slides={p.slides} isActive={isActive} title={p.title} />
         
         {/* Click to expand hover overlay */}
         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 pointer-events-none">
@@ -300,6 +304,8 @@ function LightboxModal({ gallery, onClose }) {
           e.stopPropagation()
           onClose()
         }}
+        id="hobby-lightbox-close-btn"
+        aria-label="Close lightbox modal"
         className="absolute top-4 right-4 z-50 flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-black/75 hover:bg-cyber-blue text-white text-base font-bold transition-all cursor-pointer shadow-lg active:scale-95 hover:scale-105"
         title="Close Gallery"
       >
@@ -325,6 +331,8 @@ function LightboxModal({ gallery, onClose }) {
               e.stopPropagation()
               setIsAutoPlaying(!isAutoPlaying)
             }}
+            id="hobby-lightbox-autoplay-btn"
+            aria-label={isAutoPlaying ? "Pause automatic slide transition" : "Start automatic slide transition"}
             className={`px-2.5 py-1 rounded flex items-center gap-1.5 text-[10px] md:text-xs font-mono border transition-all cursor-pointer ${
               isAutoPlaying 
                 ? 'border-cyber-green bg-cyber-green/10 text-cyber-green'
@@ -349,7 +357,7 @@ function LightboxModal({ gallery, onClose }) {
           <motion.img
             key={index}
             src={slides[index]}
-            alt={`Hobby Work ${index + 1}`}
+            alt={`${gallery.title} image detail ${index + 1}`}
             className="max-h-full max-w-full object-contain rounded-lg shadow-2xl border border-white/5 cursor-default relative z-10"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -361,6 +369,8 @@ function LightboxModal({ gallery, onClose }) {
         {/* Left Arrow Button (Rendered after center image to guarantee layering/clickability, absolute, z-30) */}
         <button
           onClick={handlePrev}
+          id="hobby-lightbox-prev-btn"
+          aria-label="View previous creative image"
           className="absolute left-2 md:left-4 z-30 bg-black/60 hover:bg-cyber-blue text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all cursor-pointer active:scale-95 border border-white/10 shadow-lg hover:scale-105"
         >
           <FaChevronLeft size={18} />
@@ -369,6 +379,8 @@ function LightboxModal({ gallery, onClose }) {
         {/* Right Arrow Button (Rendered after center image to guarantee layering/clickability, absolute, z-30) */}
         <button
           onClick={handleNext}
+          id="hobby-lightbox-next-btn"
+          aria-label="View next creative image"
           className="absolute right-2 md:right-4 z-30 bg-black/60 hover:bg-cyber-blue text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all cursor-pointer active:scale-95 border border-white/10 shadow-lg hover:scale-105"
         >
           <FaChevronRight size={18} />
@@ -387,11 +399,13 @@ function LightboxModal({ gallery, onClose }) {
               setIsAutoPlaying(false)
               setIndex(idx)
             }}
+            id={`hobby-lightbox-thumb-${idx}`}
+            aria-label={`Jump to creative image ${idx + 1}`}
             className={`w-14 h-14 rounded overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
               idx === index ? 'border-cyber-blue scale-105 shadow-lg' : 'border-white/10 opacity-40 hover:opacity-100'
             }`}
           >
-            <img src={slide} loading="lazy" className="w-full h-full object-cover select-none pointer-events-none" alt="" />
+            <img src={slide} loading="lazy" className="w-full h-full object-cover select-none pointer-events-none" alt={`Thumbnail of work ${idx + 1}`} />
           </button>
         ))}
       </div>
@@ -431,7 +445,9 @@ export default function Skills() {
             {categories.map((c) => (
               <button
                 key={c.id}
+                id={`skills-tab-${c.id}`}
                 onClick={() => setActiveTab(c.id)}
+                aria-label={`Show ${c.name} skills`}
                 className={`px-3 py-1.5 rounded-full border text-xs font-mono tracking-wider transition-all cursor-pointer ${
                   activeTab === c.id
                     ? 'border-cyber-blue bg-cyber-blue/10 text-cyber-blue font-semibold'
@@ -522,7 +538,9 @@ export default function Skills() {
             <a 
               href="https://www.facebook.com/arghya.bhattacharjee876" 
               target="_blank" 
-              rel="noreferrer" 
+              rel="noopener noreferrer" 
+              id="hobby-header-social-facebook"
+              aria-label="Access creative Facebook Profile"
               className="hover:text-cyber-blue transition-colors hover:scale-110 active:scale-95 duration-200"
               title="Creative Facebook"
             >
@@ -531,7 +549,9 @@ export default function Skills() {
             <a 
               href="https://www.instagram.com/arghya.bhattacharjee876/" 
               target="_blank" 
-              rel="noreferrer" 
+              rel="noopener noreferrer" 
+              id="hobby-header-social-instagram"
+              aria-label="Access creative Instagram Profile"
               className="hover:text-cyber-pink transition-colors hover:scale-110 active:scale-95 duration-200"
               title="Creative Instagram"
             >

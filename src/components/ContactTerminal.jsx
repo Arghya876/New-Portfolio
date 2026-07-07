@@ -229,6 +229,8 @@ export default function ContactTerminal() {
             <button
               type="submit"
               disabled={formStatus.loading}
+              id="contact-submit-btn"
+              aria-label="Send contact message from terminal form"
               className="mt-2 w-full py-2.5 rounded bg-gradient-to-r from-cyber-purple to-cyber-blue text-white font-mono text-xs tracking-widest uppercase font-semibold flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-50 cursor-pointer"
             >
               {formStatus.loading ? 'Dispatching...' : 'Send Message'} <FaArrowRight className="text-[10px]" />
@@ -243,22 +245,67 @@ export default function ContactTerminal() {
 
           {/* Social Links Panel */}
           <div className="flex items-center justify-center gap-6 mt-8 pt-4 border-t border-theme-border text-theme-muted text-lg">
-            <a href="https://www.linkedin.com/in/arghya-bhattacharjee876/" target="_blank" rel="noreferrer" className="hover:text-theme-text transition-colors" title="LinkedIn">
+            <a 
+              href="https://www.linkedin.com/in/arghya-bhattacharjee876/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              id="contact-social-linkedin"
+              aria-label="Access LinkedIn Profile"
+              className="hover:text-theme-text transition-colors" 
+              title="LinkedIn"
+            >
               <FaLinkedin />
             </a>
-            <a href="https://github.com/Arghya876" target="_blank" rel="noreferrer" className="hover:text-theme-text transition-colors" title="GitHub">
+            <a 
+              href="https://github.com/Arghya876" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              id="contact-social-github"
+              aria-label="Access GitHub Profile"
+              className="hover:text-theme-text transition-colors" 
+              title="GitHub"
+            >
               <FaGithub />
             </a>
-            <a href="https://www.facebook.com/arghya.bhattacharjee876" target="_blank" rel="noreferrer" className="hover:text-theme-text transition-colors" title="Facebook">
+            <a 
+              href="https://www.facebook.com/arghya.bhattacharjee876" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              id="contact-social-facebook"
+              aria-label="Access Facebook Profile"
+              className="hover:text-theme-text transition-colors" 
+              title="Facebook"
+            >
               <FaFacebook />
             </a>
-            <a href="https://www.instagram.com/arghya.bhattacharjee876/" target="_blank" rel="noreferrer" className="hover:text-theme-text transition-colors" title="Instagram">
+            <a 
+              href="https://www.instagram.com/arghya.bhattacharjee876/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              id="contact-social-instagram"
+              aria-label="Access Instagram Profile"
+              className="hover:text-theme-text transition-colors" 
+              title="Instagram"
+            >
               <FaInstagram />
             </a>
-            <a href="mailto:arghyabhattacharjee876@gmail.com" className="hover:text-theme-text transition-colors" title="Email Direct">
+            <a 
+              href="mailto:arghyabhattacharjee876@gmail.com" 
+              id="contact-social-email"
+              aria-label="Send direct Email message to Arghya"
+              className="hover:text-theme-text transition-colors" 
+              title="Email Direct"
+            >
               <FaEnvelope />
             </a>
-            <a href="./resume.pdf" download="Arghya_Bhattacharjee_Resume.pdf" className="hover:text-theme-text transition-colors" title="Download CV">
+            <a 
+              href="./resume.pdf" 
+              download="Arghya_Bhattacharjee_Resume.pdf" 
+              id="contact-download-resume"
+              aria-label="Download CV Resume PDF document"
+              className="hover:text-theme-text transition-colors" 
+              title="Download CV"
+            >
               <FaFileDownload />
             </a>
           </div>

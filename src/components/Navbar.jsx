@@ -94,6 +94,8 @@ export default function Navbar() {
           {/* Logo */}
           <button 
             onClick={() => scrollTo('hero')} 
+            id="nav-logo-btn"
+            aria-label="Arghya Bhattacharjee Portfolio Home"
             className="group flex items-center gap-2 cursor-pointer font-sans"
           >
             <span className="text-base sm:text-lg font-bold tracking-wider text-theme-text hover:text-cyber-blue transition-colors">
@@ -106,7 +108,9 @@ export default function Navbar() {
             {navSections.slice(1).map((section) => (
               <button
                 key={section.id}
+                id={`nav-desktop-btn-${section.id}`}
                 onClick={() => scrollTo(section.id)}
+                aria-label={`Navigate to ${section.label} section`}
                 className={`uppercase tracking-wider transition-colors relative py-1 cursor-pointer ${
                   activeSection === section.id
                     ? 'text-cyber-blue font-semibold'
@@ -130,6 +134,8 @@ export default function Navbar() {
             {/* Theme Toggle Button */}
             <button
               onClick={() => setIsDark(!isDark)}
+              id="theme-toggle-btn"
+              aria-label="Toggle visual color theme between light and dark mode"
               className="p-2 rounded-lg border border-theme-border bg-theme-card/30 text-theme-muted hover:text-theme-text hover:bg-theme-card/85 transition-colors cursor-pointer text-sm"
               title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
@@ -141,7 +147,9 @@ export default function Navbar() {
               <a
                 href="https://github.com/Arghya876"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                id="nav-desktop-social-github"
+                aria-label="Access GitHub Profile"
                 className="text-theme-muted hover:text-theme-text transition-colors text-lg"
                 title="GitHub Profile"
               >
@@ -150,7 +158,9 @@ export default function Navbar() {
               <a
                 href="https://www.linkedin.com/in/arghya-bhattacharjee876/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                id="nav-desktop-social-linkedin"
+                aria-label="Access LinkedIn Profile"
                 className="text-theme-muted hover:text-theme-text transition-colors text-lg"
                 title="LinkedIn Profile"
               >
@@ -159,7 +169,9 @@ export default function Navbar() {
               <a
                 href="https://www.facebook.com/arghya.bhattacharjee876"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                id="nav-desktop-social-facebook"
+                aria-label="Access Facebook Profile"
                 className="text-theme-muted hover:text-theme-text transition-colors text-lg"
                 title="Facebook Profile"
               >
@@ -168,7 +180,9 @@ export default function Navbar() {
               <a
                 href="https://www.instagram.com/arghya.bhattacharjee876/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                id="nav-desktop-social-instagram"
+                aria-label="Access Instagram Profile"
                 className="text-theme-muted hover:text-theme-text transition-colors text-lg"
                 title="Instagram Profile"
               >
@@ -177,6 +191,8 @@ export default function Navbar() {
               <a
                 href="./Arghya_Bhattacharjee_CV.pdf"
                 download="Arghya_Bhattacharjee_CV.pdf"
+                id="nav-desktop-download-resume"
+                aria-label="Download CV Resume PDF document"
                 className="flex items-center gap-2 px-3 py-1.5 rounded-md border border-cyber-blue/30 text-cyber-blue hover:bg-cyber-blue/10 text-xs font-mono tracking-wider transition-all"
               >
                 <FaFileDownload /> RESUME
@@ -186,8 +202,9 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              id="mobile-menu-toggle-btn"
               className="lg:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5 z-50 relative focus:outline-none cursor-pointer"
-              aria-label="Toggle Mobile Menu"
+              aria-label="Toggle Mobile Navigation Drawer Menu"
             >
               <span
                 className={`w-6 h-[2px] bg-theme-text transition-all duration-300 ${
@@ -223,7 +240,9 @@ export default function Navbar() {
               {navSections.map((section) => (
                 <button
                   key={section.id}
+                  id={`nav-mobile-btn-${section.id}`}
                   onClick={() => scrollTo(section.id)}
+                  aria-label={`Navigate to ${section.label} section`}
                   className={`uppercase tracking-wider transition-colors py-2 cursor-pointer ${
                     activeSection === section.id
                       ? 'text-cyber-blue font-bold glow-text-blue'
@@ -239,6 +258,8 @@ export default function Navbar() {
             <a
               href="./Arghya_Bhattacharjee_CV.pdf"
               download="Arghya_Bhattacharjee_CV.pdf"
+              id="nav-mobile-download-resume"
+              aria-label="Download CV Resume PDF document"
               className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-cyber-blue/40 text-cyber-blue hover:bg-cyber-blue/10 text-sm font-mono tracking-wider transition-all mt-8 shadow-[0_0_15px_rgba(0,240,255,0.15)] active:scale-95"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -246,19 +267,52 @@ export default function Navbar() {
             </a>
 
             <div className="flex gap-6 mt-8 text-2xl text-theme-muted">
-              <a href="https://github.com/Arghya876" target="_blank" rel="noreferrer" className="hover:text-theme-text">
+              <a 
+                href="https://github.com/Arghya876" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                id="nav-mobile-social-github" 
+                aria-label="Access GitHub Profile" 
+                className="hover:text-theme-text"
+              >
                 <FaGithub />
               </a>
-              <a href="https://www.linkedin.com/in/arghya-bhattacharjee876/" target="_blank" rel="noreferrer" className="hover:text-theme-text">
+              <a 
+                href="https://www.linkedin.com/in/arghya-bhattacharjee876/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                id="nav-mobile-social-linkedin" 
+                aria-label="Access LinkedIn Profile" 
+                className="hover:text-theme-text"
+              >
                 <FaLinkedin />
               </a>
-              <a href="https://www.facebook.com/arghya.bhattacharjee876" target="_blank" rel="noreferrer" className="hover:text-theme-text">
+              <a 
+                href="https://www.facebook.com/arghya.bhattacharjee876" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                id="nav-mobile-social-facebook" 
+                aria-label="Access Facebook Profile" 
+                className="hover:text-theme-text"
+              >
                 <FaFacebook />
               </a>
-              <a href="https://www.instagram.com/arghya.bhattacharjee876/" target="_blank" rel="noreferrer" className="hover:text-theme-text">
+              <a 
+                href="https://www.instagram.com/arghya.bhattacharjee876/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                id="nav-mobile-social-instagram" 
+                aria-label="Access Instagram Profile" 
+                className="hover:text-theme-text"
+              >
                 <FaInstagram />
               </a>
-              <a href="mailto:arghyabhattacharjee876@gmail.com" className="hover:text-theme-text">
+              <a 
+                href="mailto:arghyabhattacharjee876@gmail.com" 
+                id="nav-mobile-social-email" 
+                aria-label="Send direct Email message to Arghya" 
+                className="hover:text-theme-text"
+              >
                 <FaEnvelope />
               </a>
             </div>
@@ -275,7 +329,9 @@ export default function Navbar() {
         {navSections.map((section) => (
           <button
             key={section.id}
+            id={`nav-side-dot-${section.id}`}
             onClick={() => scrollTo(section.id)}
+            aria-label={`Scroll page view to ${section.label} section`}
             className="group relative flex items-center justify-center p-1.5 focus:outline-none cursor-pointer"
             title={section.label}
           >
