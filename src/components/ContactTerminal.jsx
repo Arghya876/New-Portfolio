@@ -131,6 +131,10 @@ export default function ContactTerminal() {
         }
       } catch (err) {
         console.error('EmailJS Form submission error:', err)
+        setTerminalHistory(prev => [
+          ...prev,
+          { text: `System Error: EmailJS failed (${err?.text || err?.message || err})`, type: 'error' }
+        ])
         setFormStatus({ success: false, loading: false, msg: 'Submission failed. Please try again.' })
       }
     } else {
@@ -169,6 +173,10 @@ export default function ContactTerminal() {
         }
       } catch (err) {
         console.error('Contact Form fallback submission error:', err)
+        setTerminalHistory(prev => [
+          ...prev,
+          { text: `System Error: Fallback failed (${err?.message || err})`, type: 'error' }
+        ])
         setFormStatus({ success: false, loading: false, msg: 'Submission failed. Please try again.' })
       }
     }
