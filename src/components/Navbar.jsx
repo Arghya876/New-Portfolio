@@ -8,7 +8,6 @@ const navSections = [
   { id: 'skills', label: 'Skills' },
   { id: 'projects', label: 'Projects' },
   { id: 'certifications', label: 'Achievements' },
-  { id: 'reviews', label: 'Reviews' },
   { id: 'contact', label: 'Connect' }
 ]
 

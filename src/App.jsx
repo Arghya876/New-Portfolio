@@ -6,7 +6,6 @@ import Journey from './components/Journey'
 import Skills from './components/Skills'
 import ProjectsStory from './components/ProjectsStory'
 import Achievements from './components/Achievements'
-import Reviews from './components/Reviews'
 import ContactTerminal from './components/ContactTerminal'
 
 function App() {
@@ -62,14 +61,13 @@ function App() {
         <Skills />
         <ProjectsStory />
         <Achievements />
-        <Reviews />
         <ContactTerminal />
       </main>
 
       {/* Footer */}
       <footer className="relative z-10 py-8 w-full border-t border-theme-border text-center text-xs text-theme-muted bg-theme-card/30 backdrop-blur-md">
         <p>© 2026 Arghya Bhattacharjee. All rights reserved.</p>
-        <p className="mt-1 text-[10px] text-cyber-blue/50">Built with React.js, Vite, Tailwind CSS, MongoDB, and Express.</p>
+        <p className="mt-1 text-[10px] text-cyber-blue/50">Built with React.js, Vite, Tailwind CSS, and Framer Motion.</p>
       </footer>
     </div>
   )
