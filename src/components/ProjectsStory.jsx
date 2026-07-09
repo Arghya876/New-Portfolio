@@ -69,12 +69,15 @@ const projects = [
     title: 'AI-Based LPG Leakage & Fire Alert',
     tagline: 'Patent Published Invention',
     icon: FaFireExtinguisher,
-    images: ['/images/Achivement/Patent.webp'],
-    problem: 'Gas leakage hazards in industrial or residential sectors require instant automatic dispatch warning triggers to prevent accidents before manual checkups occur.',
-    solution: 'Co-invented a published patent system mapping MQ gas sensors with Arduino boards. Programmed a Python alert engine that evaluates risk levels and automatically alerts administrators via WhatsApp using the Twilio API.',
+    images: [
+      '/images/Projects/AI-Based LPG Leakage & Fire Alert/Patent.webp',
+      '/images/Projects/AI-Based LPG Leakage & Fire Alert/Patent file.webp'
+    ],
+    problem: 'Standard gas detection systems rely on local audio alarms, which fail to notify home occupants or emergency services if a hazard occurs when the property is unoccupied.',
+    solution: 'Co-invented and patented an AI-integrated safety system utilizing high-precision MQ gas and flame sensors on an Arduino board. Integrated a Python monitoring engine that analyzes sensor levels in real-time, automatically sending instant WhatsApp warning alerts via Twilio API to users.',
     tech: ['Python', 'Arduino IDE', 'Twilio API', 'IoT Sensors', 'Patent-Backed'],
-    github: 'https://github.com/Arghya876/LPG-Leakage-Detection',
-    demo: '#',
+    github: 'https://github.com/Arghya876/AI-based-LPG-Gas-Leakage-Detection-Fire-Alert-System.git',
+    demo: '/images/Projects/AI-Based LPG Leakage & Fire Alert/Patent file.webp',
     accent: 'text-cyber-pink',
     badge: 'PATENT PUBLISHED'
   },
@@ -461,10 +464,10 @@ export default function ProjectsStory() {
                         target="_blank"
                         rel="noopener noreferrer"
                         id={`projects-demo-link-${project.title.toLowerCase().replace(/\s+/g, '-')}`}
-                        aria-label={`Visit live deployed demonstration for ${project.title}`}
+                        aria-label={project.title === 'AI-Based LPG Leakage & Fire Alert' ? `View patent document for ${project.title}` : `Visit live deployed demonstration for ${project.title}`}
                         className="flex items-center gap-2 text-[10px] font-mono tracking-wider border border-theme-border px-3.5 py-2 rounded bg-theme-card/30 hover:bg-cyber-purple/15 text-theme-text transition-all cursor-pointer"
                       >
-                        <FaExternalLinkAlt /> LIVE DEMO
+                        <FaExternalLinkAlt /> {project.title === 'AI-Based LPG Leakage & Fire Alert' ? 'PATENT FILE' : 'LIVE DEMO'}
                       </a>
                     )}
                   </div>
