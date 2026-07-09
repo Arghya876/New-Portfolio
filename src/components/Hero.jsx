@@ -57,7 +57,19 @@ export default function Hero() {
   const [isClicked, setIsClicked] = useState(false)
   const [frontLoaded, setFrontLoaded] = useState(false)
   const [backLoaded, setBackLoaded] = useState(false)
+  const [repoCount, setRepoCount] = useState(15) // fallback to 15 based on live stats
   const isFlipped = isHovered || isClicked
+
+  useEffect(() => {
+    fetch('https://api.github.com/users/Arghya876')
+      .then(res => res.json())
+      .then(data => {
+        if (data && typeof data.public_repos === 'number') {
+          setRepoCount(data.public_repos)
+        }
+      })
+      .catch(err => console.error("Error fetching GitHub repo count:", err))
+  }, [])
 
   // Typewriter effect
   useEffect(() => {
@@ -176,7 +188,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <StatCounter target="10" suffix="+" label="Projects Done" />
+            <StatCounter target={repoCount.toString()} suffix="+" label="Projects Done" />
             <StatCounter target="5" suffix="+" label="Certs Unlocked" />
             <StatCounter target="1" suffix="" label="Patent Pub" />
             <StatCounter target="1" suffix="" label="Internship" />

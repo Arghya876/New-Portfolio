@@ -83,32 +83,6 @@ Feeling excited and motivated after diving into the Arcade platform. Learning an
   }
 ]
 
-const stats = [
-  { label: 'Repos', value: '24+', icon: FaBook, color: 'text-cyber-blue' },
-  { label: 'Commits', value: '840+', icon: FaCodeBranch, color: 'text-cyber-purple' },
-  { label: 'Streak', value: '18 Days', icon: FaFire, color: 'text-cyber-pink' }
-]
-
-const generateContributions = () => {
-  const totalDays = 20 * 7 // 20 weeks
-  const grid = []
-  for (let i = 0; i < totalDays; i++) {
-    let count = 0
-    const rand = Math.random()
-    if (rand > 0.85) count = Math.floor(Math.random() * 8) + 1
-    else if (rand > 0.5) count = Math.floor(Math.random() * 3) + 1
-    
-    const date = new Date()
-    date.setDate(date.getDate() - (totalDays - i))
-    
-    grid.push({
-      date: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-      count
-    })
-  }
-  return grid
-}
-
 function CertDetailModal({ cert, onClose }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -263,9 +237,87 @@ export default function Achievements() {
   const [gridData, setGridData] = useState([])
   const [tooltip, setTooltip] = useState({ show: false, text: '', x: 0, y: 0 })
   const [selectedCert, setSelectedCert] = useState(null)
+  const [gitStats, setGitStats] = useState({
+    repos: '15+',
+    commits: '820+',
+    streak: '12 Days'
+  })
 
   useEffect(() => {
-    setGridData(generateContributions())
+    // Generate base grid with minor noise to represent overall activity
+    const totalDays = 20 * 7
+    const baseline = []
+    for (let i = 0; i < totalDays; i++) {
+      let count = 0
+      const rand = Math.random()
+      // Light overall activity background noise (15% chance of 1-2 commits)
+      if (rand > 0.85) count = Math.floor(Math.random() * 2) + 1
+      
+      const date = new Date()
+      date.setDate(date.getDate() - (totalDays - i - 1))
+      
+      baseline.push({
+        date: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        _iso: date.toISOString().split('T')[0],
+        count
+      })
+    }
+
+    // Fetch user profile for repo count
+    fetch('https://api.github.com/users/Arghya876')
+      .then(res => res.json())
+      .then(data => {
+        if (data && typeof data.public_repos === 'number') {
+          setGitStats(prev => ({ ...prev, repos: `${data.public_repos}+` }))
+        }
+      })
+      .catch(err => console.error("Error fetching GitHub profile:", err))
+
+    // Fetch user events to layer real recent commits & calculate stats
+    fetch('https://api.github.com/users/Arghya876/events')
+      .then(res => res.json())
+      .then(events => {
+        if (Array.isArray(events)) {
+          const updatedGrid = [...baseline]
+          let realRecentCommits = 0
+          const activeDays = new Set()
+          
+          events.forEach(evt => {
+            if (evt.created_at) {
+              const datePart = evt.created_at.split('T')[0]
+              activeDays.add(datePart)
+              
+              const foundDay = updatedGrid.find(d => d._iso === datePart)
+              if (foundDay) {
+                let increment = 1
+                if (evt.type === 'PushEvent' && evt.payload && evt.payload.commits) {
+                  increment = evt.payload.commits.length
+                  realRecentCommits += increment
+                }
+                foundDay.count += increment
+              }
+            }
+          })
+          
+          setGridData(updatedGrid)
+          
+          // Compute dynamic commits and streak
+          const totalCommitsEstimate = 820 + realRecentCommits
+          const streakCount = activeDays.size > 0 ? activeDays.size : 12
+          
+          setGitStats(prev => ({
+            ...prev,
+            commits: `${totalCommitsEstimate}+`,
+            streak: `${streakCount} Days`
+          }))
+        } else {
+          setGridData(baseline)
+        }
+      })
+      .catch(err => {
+        console.error("Error fetching GitHub events:", err)
+        setGridData(baseline)
+      })
   }, [])
 
   const triggerConfetti = (e, color) => {
@@ -427,7 +479,11 @@ export default function Achievements() {
 
           {/* Stats Bar */}
           <div className="grid grid-cols-3 gap-3">
-            {stats.map((s) => {
+            {[
+              { label: 'Repos', value: gitStats.repos, icon: FaBook, color: 'text-cyber-blue' },
+              { label: 'Commits', value: gitStats.commits, icon: FaCodeBranch, color: 'text-cyber-purple' },
+              { label: 'Streak', value: gitStats.streak, icon: FaFire, color: 'text-cyber-pink' }
+            ].map((s) => {
               const Icon = s.icon
               return (
                 <div key={s.label} className="p-3 rounded-xl border border-theme-border bg-theme-card/30 text-center">
