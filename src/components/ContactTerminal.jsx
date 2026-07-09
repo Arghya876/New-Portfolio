@@ -45,7 +45,7 @@ export default function ContactTerminal() {
         break
       case 'projects':
         newHistory.push({
-          text: 'Featured Projects:\n  - NovaCart: MERN E-Commerce\n  - Little Guardian: IoT Smart Cradle\n  - LPG Leakage System: Patent IoT Alert\n  - Face Emotion Recognition: Deep Learning CNN',
+          text: 'Featured Projects:\n  - NovaCart: MERN E-Commerce\n  - Little Guardian: AI Baby Monitor\n  - LPG Leakage System: Patent IoT Alert\n  - Face Emotion Recognition: Deep Learning CNN',
           type: 'output'
         })
         break

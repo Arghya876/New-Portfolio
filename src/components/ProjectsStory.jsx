@@ -42,16 +42,27 @@ const projects = [
   {
     chapter: '02',
     title: 'Little Guardian',
-    tagline: 'Smart Baby Cradle Using IoT & AI',
+    tagline: 'AI-Powered Baby Monitoring System',
     icon: FaChild,
-    images: ['/images/Projects/Little Guardian/Little Guardian Dashboard.webp'],
-    problem: 'Infant sleep monitors are usually limited to simple audio streaming, failing to recognize environmental anomalies or dangerous shifts in an infant sleeping state.',
-    solution: 'Designed an automated smart cradle system utilizing IoT sensors for real-time telemetry (humidity, moisture, crying sounds). Managed database storage using MongoDB and a Java Spring Boot backend, and connected Firebase for push alerts.',
-    tech: ['Java', 'Spring Boot', 'Firebase', 'MongoDB', 'IoT Sensors'],
-    github: 'https://github.com/Arghya876/Little-Guardian',
-    demo: '#',
+    images: [
+      '/images/Projects/Little Guardian/Little Guardian  Home.webp',
+      '/images/Projects/Little Guardian/Little Guardian Features.webp',
+      '/images/Projects/Little Guardian/Little Guardian How It Works.webp',
+      '/images/Projects/Little Guardian/Little Guardian Login.webp',
+      '/images/Projects/Little Guardian/Little Guardian Contact.webp',
+      '/images/Projects/Little Guardian/Little Guardian Dashboard.webp',
+      '/images/Projects/Little Guardian/Little Guardian Emotion Detection.webp',
+      '/images/Projects/Little Guardian/Little Guardian Object Detection.webp',
+      '/images/Projects/Little Guardian/Little Guardian Baby Profile.webp',
+      '/images/Projects/Little Guardian/Little Guardian  Feeding Tracker.webp'
+    ],
+    problem: 'Traditional baby monitors are limited to basic audio/video feeds, failing to detect emotional distress, crying reasons, or physical hazards in real-time.',
+    solution: 'Designed and implemented a full-stack, multi-service baby safety monitoring ecosystem. Integrates a React + Vite frontend, a Spring Boot backend API with MongoDB, and Python AI modules for real-time cry analysis, emotion detection, and object detection. Includes Google OAuth/JWT security and Firebase push alerts.',
+    tech: ['React', 'Vite', 'Spring Boot', 'Python', 'AI & OpenCV', 'MongoDB', 'JWT Auth', 'Firebase'],
+    github: 'https://github.com/Arghya876/Little-Guardian.git',
+    demo: 'https://little-guardian-frontend.onrender.com/',
     accent: 'text-cyber-blue',
-    badge: 'IOT & SPRING BOOT'
+    badge: 'FULL-STACK AI'
   },
   {
     chapter: '03',
