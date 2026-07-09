@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { FaTerminal, FaLinkedin, FaGithub, FaEnvelope, FaFileDownload, FaArrowRight, FaFacebook, FaInstagram } from 'react-icons/fa'
+import emailjs from '@emailjs/browser'
 
 export default function ContactTerminal() {
   const [terminalHistory, setTerminalHistory] = useState([
@@ -94,41 +95,82 @@ export default function ContactTerminal() {
 
     setFormStatus({ success: false, loading: true, msg: '' })
 
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/arghyabhattacharjee876@gmail.com", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          _subject: `Portfolio Contact: ${formData.subject}`
-        })
-      })
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
-      const data = await response.json()
+    // If EmailJS env variables are defined, send a styled custom template securely
+    if (serviceId && templateId && publicKey) {
+      try {
+        const result = await emailjs.send(
+          serviceId,
+          templateId,
+          {
+            from_name: formData.name,
+            from_email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            to_name: 'Arghya Bhattacharjee'
+          },
+          publicKey
+        )
 
-      if (response.ok && data.success === 'true') {
-        setTerminalHistory(prev => [
-          ...prev,
-          { text: `System: Incoming message buffered from ${formData.name} (${formData.email})`, type: 'system' },
-          { text: `Subject: ${formData.subject}`, type: 'system' },
-          { text: `"${formData.message.slice(0, 50)}${formData.message.length > 50 ? '...' : ''}"`, type: 'output' },
-          { text: `System: Message dispatch finalized successfully.`, type: 'system' }
-        ])
+        if (result.status === 200) {
+          setTerminalHistory(prev => [
+            ...prev,
+            { text: `System: Incoming message buffered from ${formData.name} (${formData.email})`, type: 'system' },
+            { text: `Subject: ${formData.subject}`, type: 'system' },
+            { text: `"${formData.message.slice(0, 50)}${formData.message.length > 50 ? '...' : ''}"`, type: 'output' },
+            { text: `System: Message dispatch finalized successfully via EmailJS.`, type: 'system' }
+          ])
 
-        setFormStatus({ success: true, loading: false, msg: 'Message sent successfully!' })
-        setFormData({ name: '', email: '', subject: '', message: '' })
-      } else {
-        throw new Error(data.message || 'API response failure')
+          setFormStatus({ success: true, loading: false, msg: 'Message sent successfully!' })
+          setFormData({ name: '', email: '', subject: '', message: '' })
+        } else {
+          throw new Error('EmailJS response code not 200')
+        }
+      } catch (err) {
+        console.error('EmailJS Form submission error:', err)
+        setFormStatus({ success: false, loading: false, msg: 'Submission failed. Please try again.' })
       }
-    } catch (err) {
-      console.error('Contact Form submission error:', err)
-      setFormStatus({ success: false, loading: false, msg: 'Submission failed. Please try again.' })
+    } else {
+      // Fallback to FormSubmit.co if EmailJS credentials are not yet set in .env
+      try {
+        const response = await fetch("https://formsubmit.co/ajax/arghyabhattacharjee876@gmail.com", {
+          method: "POST",
+          headers: { 
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            _subject: `Portfolio: ${formData.subject}`
+          })
+        })
+
+        const data = await response.json()
+
+        if (response.ok && data.success === 'true') {
+          setTerminalHistory(prev => [
+            ...prev,
+            { text: `System: Incoming message buffered from ${formData.name} (${formData.email})`, type: 'system' },
+            { text: `Subject: ${formData.subject}`, type: 'system' },
+            { text: `"${formData.message.slice(0, 50)}${formData.message.length > 50 ? '...' : ''}"`, type: 'output' },
+            { text: `System: Message dispatch finalized successfully.`, type: 'system' }
+          ])
+
+          setFormStatus({ success: true, loading: false, msg: 'Message sent successfully!' })
+          setFormData({ name: '', email: '', subject: '', message: '' })
+        } else {
+          throw new Error(data.message || 'API response failure')
+        }
+      } catch (err) {
+        console.error('Contact Form fallback submission error:', err)
+        setFormStatus({ success: false, loading: false, msg: 'Submission failed. Please try again.' })
+      }
     }
   }
 
