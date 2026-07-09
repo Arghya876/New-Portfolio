@@ -233,6 +233,26 @@ function CertDetailModal({ cert, onClose }) {
   )
 }
 
+const fetchGitHubData = async (url, cacheKey, expiryMs = 3600000) => {
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) {
+    try {
+      const { data, timestamp } = JSON.parse(cached);
+      if (Date.now() - timestamp < expiryMs) {
+        return data;
+      }
+    } catch (e) {
+      localStorage.removeItem(cacheKey);
+    }
+  }
+
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+  const data = await res.json();
+  localStorage.setItem(cacheKey, JSON.stringify({ data, timestamp: Date.now() }));
+  return data;
+};
+
 export default function Achievements() {
   const [gridData, setGridData] = useState([])
   const [tooltip, setTooltip] = useState({ show: false, text: '', x: 0, y: 0 })
@@ -264,8 +284,7 @@ export default function Achievements() {
     }
 
     // Fetch user profile for repo count
-    fetch('https://api.github.com/users/Arghya876')
-      .then(res => res.json())
+    fetchGitHubData('https://api.github.com/users/Arghya876', 'github-profile-Arghya876')
       .then(data => {
         if (data && typeof data.public_repos === 'number') {
           setGitStats(prev => ({ ...prev, repos: `${data.public_repos}+` }))
@@ -274,8 +293,7 @@ export default function Achievements() {
       .catch(err => console.error("Error fetching GitHub profile:", err))
 
     // Fetch user events to layer real recent commits & calculate stats
-    fetch('https://api.github.com/users/Arghya876/events')
-      .then(res => res.json())
+    fetchGitHubData('https://api.github.com/users/Arghya876/events', 'github-events-Arghya876')
       .then(events => {
         if (Array.isArray(events)) {
           const updatedGrid = [...baseline]
@@ -382,41 +400,34 @@ export default function Achievements() {
               return (
                 <div
                   key={c.title}
+                  id={`cert-card-${c.title.toLowerCase().replace(/\s+/g, '-')}`}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Expand details and view certificate for ${c.title}`}
                   onClick={(e) => {
                     triggerConfetti(e, c.color)
                     setSelectedCert(c)
                   }}
-                  className="p-4 rounded-xl glass-panel border border-theme-border flex gap-4 items-center cursor-pointer hover:border-theme-text/20 select-none active:scale-[0.98] transition-all animate-float"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      triggerConfetti(e, c.color)
+                      setSelectedCert(c)
+                    }
+                  }}
+                  className="p-4 rounded-xl glass-panel border border-theme-border flex gap-4 items-center cursor-pointer hover:border-theme-text/20 select-none active:scale-[0.98] transition-all animate-float focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-blue"
                   style={{ animationDelay: `${idx * 0.2}s` }}
                 >
-                  {c.credlyId ? (
-                    <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 image-highlight flex items-center justify-center bg-transparent relative">
-                      <div className="absolute w-[150px] h-[150px] top-[-5px] flex items-center justify-center scale-[0.37] origin-top">
-                        <iframe
-                          src={`https://www.credly.com/embedded_badge/${c.credlyId}`}
-                          width="150"
-                          height="270"
-                          frameBorder="0"
-                          scrolling="no"
-                          title={`${c.title} Badge`}
-                          className="pointer-events-none"
-                          sandbox="allow-scripts allow-popups allow-same-origin"
-                          allow="accelerometer 'none'; gyroscope 'none'; geolocation 'none'; camera 'none'; microphone 'none';"
-                        />
-                      </div>
-                    </div>
-                  ) : (
-                    <div
-                      className="w-14 h-14 rounded-lg overflow-hidden shrink-0 image-highlight"
-                    >
-                      <img
-                        src={c.img}
-                        alt={c.title}
-                        loading="lazy"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  )}
+                  <div
+                    className="w-14 h-14 rounded-lg overflow-hidden shrink-0 image-highlight"
+                  >
+                    <img
+                      src={c.img}
+                      alt={c.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <div className="min-w-0 flex-1 text-left">
                     <h5 className="text-xs font-bold text-theme-text truncate" title={c.title}>
                       {c.title}
@@ -448,9 +459,11 @@ export default function Achievements() {
                 href="https://github.com/Arghya876"
                 target="_blank"
                 rel="noreferrer"
+                id="achievements-github-profile-link"
+                aria-label="Visit Arghya's GitHub Profile"
                 className="text-[10px] font-mono text-cyber-blue hover:underline"
               >
-                PROFILER &gt;
+                PROFILE &gt;
               </a>
             </div>
 

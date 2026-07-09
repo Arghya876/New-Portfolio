@@ -133,10 +133,20 @@ function ProjectCarousel({ images, title, onImageClick }) {
 
   return (
     <div 
-      className="relative w-full rounded-xl overflow-hidden group/img image-highlight bg-black/5 dark:bg-black/20 aspect-[16/10] flex items-center justify-center cursor-pointer select-none"
+      id={`projects-image-btn-${title.toLowerCase().replace(/\s+/g, '-')}`}
+      role="button"
+      tabIndex={0}
+      aria-label={`Expand screenshots of project ${title} in lightbox`}
+      className="relative w-full rounded-xl overflow-hidden group/img image-highlight bg-black/5 dark:bg-black/20 aspect-[16/10] flex items-center justify-center cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-blue"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onImageClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onImageClick()
+        }
+      }}
     >
       <AnimatePresence mode="wait">
         <motion.img

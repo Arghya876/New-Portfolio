@@ -49,6 +49,34 @@ function StatCounter({ target, suffix = '', label }) {
   )
 }
 
+const fetchGitHubRepoCount = async (username, fallback = 15) => {
+  const cacheKey = `github-profile-${username}`;
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) {
+    try {
+      const { data, timestamp } = JSON.parse(cached);
+      if (Date.now() - timestamp < 3600000 && typeof data.public_repos === 'number') {
+        return data.public_repos;
+      }
+    } catch (e) {
+      localStorage.removeItem(cacheKey);
+    }
+  }
+
+  try {
+    const res = await fetch(`https://api.github.com/users/${username}`);
+    if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+    const data = await res.json();
+    if (data && typeof data.public_repos === 'number') {
+      localStorage.setItem(cacheKey, JSON.stringify({ data, timestamp: Date.now() }));
+      return data.public_repos;
+    }
+  } catch (err) {
+    console.error("Error fetching GitHub repo count, using fallback:", err);
+  }
+  return fallback;
+};
+
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0)
   const [displayText, setDisplayText] = useState('')
@@ -61,14 +89,7 @@ export default function Hero() {
   const isFlipped = isHovered || isClicked
 
   useEffect(() => {
-    fetch('https://api.github.com/users/Arghya876')
-      .then(res => res.json())
-      .then(data => {
-        if (data && typeof data.public_repos === 'number') {
-          setRepoCount(data.public_repos)
-        }
-      })
-      .catch(err => console.error("Error fetching GitHub repo count:", err))
+    fetchGitHubRepoCount('Arghya876', 15).then(count => setRepoCount(count));
   }, [])
 
   // Typewriter effect
@@ -203,9 +224,19 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
           <div 
-            className="relative w-64 h-64 sm:w-72 sm:h-72 cursor-pointer select-none"
+            id="hero-profile-card"
+            role="button"
+            tabIndex={0}
+            aria-label="Interactive profile card. Press Enter or Space to flip between photo and avatar animation."
+            className="relative w-64 h-64 sm:w-72 sm:h-72 cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-blue rounded-full"
             style={{ perspective: '1000px' }}
             onClick={() => setIsClicked(!isClicked)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setIsClicked(!isClicked);
+              }
+            }}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => {
               setIsHovered(false)

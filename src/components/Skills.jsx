@@ -191,7 +191,11 @@ function PassionCard({ p, idx, onOpenLightbox }) {
   return (
     <motion.div
       key={idx}
-      className="p-4 rounded-xl border border-theme-border bg-theme-card flex flex-col hover:scale-[1.03] transition-all shadow-md odd:rotate-1 even:-rotate-1 hover:rotate-0 select-none cursor-pointer group relative"
+      id={`hobby-card-${p.title.toLowerCase().replace(/\s+/g, '-')}`}
+      role="button"
+      tabIndex={0}
+      aria-label={`Expand details and screenshots for ${p.title} hobby`}
+      className="p-4 rounded-xl border border-theme-border bg-theme-card flex flex-col hover:scale-[1.03] transition-all shadow-md odd:rotate-1 even:-rotate-1 hover:rotate-0 select-none cursor-pointer group relative focus:outline-none focus-visible:ring-2 focus-visible:ring-cyber-blue"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -202,6 +206,12 @@ function PassionCard({ p, idx, onOpenLightbox }) {
         setIsClicked(false)
       }}
       onClick={() => onOpenLightbox(p)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onOpenLightbox(p)
+        }
+      }}
     >
       {/* Polaroid photo frame with hover zoom indicator */}
       <div className="aspect-square w-full overflow-hidden rounded-lg image-highlight relative shadow-sm h-64 sm:h-auto">

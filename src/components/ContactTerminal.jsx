@@ -51,9 +51,9 @@ export default function ContactTerminal() {
         })
         break
       case 'resume':
-        newHistory.push({ text: 'Triggering resume download... File: resume.pdf', type: 'output' })
+        newHistory.push({ text: 'Triggering resume download... File: Arghya_Bhattacharjee_CV.pdf', type: 'output' })
         const link = document.createElement('a')
-        link.href = './resume.pdf'
+        link.href = './Arghya_Bhattacharjee_CV.pdf'
         link.download = 'Arghya_Bhattacharjee_Resume.pdf'
         document.body.appendChild(link)
         link.click()
@@ -231,12 +231,15 @@ export default function ContactTerminal() {
 
           <form onSubmit={handleTerminalSubmit} className="border-t border-white/5 bg-black/30 flex items-center p-3">
             <span className="text-cyber-blue font-bold mr-2 select-none">&gt;</span>
+            <label htmlFor="terminal-cli-input" className="sr-only">Enter terminal command</label>
             <input
+              id="terminal-cli-input"
               ref={inputRef}
               type="text"
               value={terminalInput}
               onChange={(e) => setTerminalInput(e.target.value)}
               placeholder="type 'help' or 'info'..."
+              aria-label="Terminal command line interface input"
               className="flex-1 bg-transparent text-gray-100 focus:outline-none placeholder-gray-700 font-mono text-xs"
             />
           </form>
@@ -384,7 +387,7 @@ export default function ContactTerminal() {
               <FaEnvelope />
             </a>
             <a 
-              href="./resume.pdf" 
+              href="./Arghya_Bhattacharjee_CV.pdf" 
               download="Arghya_Bhattacharjee_Resume.pdf" 
               id="contact-download-resume"
               aria-label="Download CV Resume PDF document"

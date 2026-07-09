@@ -107,8 +107,10 @@ export default function Experience() {
 
           {/* Root Directory Folder */}
           <button
+            id="exp-folder-toggle-btn"
+            aria-label="Toggle prodigy internship folder explorer"
             onClick={() => setIsFolderOpen(!isFolderOpen)}
-            className="flex items-center gap-2 text-xs text-gray-300 hover:text-white select-none w-full text-left"
+            className="flex items-center gap-2 text-xs text-gray-300 hover:text-white select-none w-full text-left cursor-pointer"
           >
             {isFolderOpen ? (
               <FaFolderOpen className="text-cyber-blue" />
@@ -129,8 +131,10 @@ export default function Experience() {
               {Object.keys(files).map((filename) => (
                 <button
                   key={filename}
+                  id={`exp-file-btn-${filename.replace('.', '-')}`}
+                  aria-label={`Open file ${filename} in editor`}
                   onClick={() => setActiveFile(filename)}
-                  className={`flex items-center gap-2 text-xs py-1.5 px-2 rounded w-full text-left transition-colors select-none ${
+                  className={`flex items-center gap-2 text-xs py-1.5 px-2 rounded w-full text-left transition-colors select-none cursor-pointer ${
                     activeFile === filename
                       ? 'bg-cyber-blue/10 text-cyber-blue font-medium'
                       : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'
@@ -152,6 +156,8 @@ export default function Experience() {
             {Object.keys(files).map((filename) => (
               <button
                 key={filename}
+                id={`exp-editor-tab-btn-${filename.replace('.', '-')}`}
+                aria-label={`Switch editor active tab to ${filename}`}
                 onClick={() => setActiveFile(filename)}
                 className={`flex items-center gap-2 text-xs px-4 py-2.5 border-r border-white/5 transition-all select-none whitespace-nowrap cursor-pointer ${
                   activeFile === filename
