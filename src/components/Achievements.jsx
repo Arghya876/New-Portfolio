@@ -250,8 +250,8 @@ export default function Achievements() {
     for (let i = 0; i < totalDays; i++) {
       let count = 0
       const rand = Math.random()
-      // Light overall activity background noise (15% chance of 1-2 commits)
-      if (rand > 0.85) count = Math.floor(Math.random() * 2) + 1
+      // Moderate overall activity background noise (35% chance of 1-5 commits) for a livelier graph
+      if (rand > 0.65) count = Math.floor(Math.random() * 5) + 1
       
       const date = new Date()
       date.setDate(date.getDate() - (totalDays - i - 1))
