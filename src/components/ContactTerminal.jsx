@@ -95,20 +95,38 @@ export default function ContactTerminal() {
     setFormStatus({ success: false, loading: true, msg: '' })
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1200))
-      
-      setTerminalHistory(prev => [
-        ...prev,
-        { text: `System: Incoming message buffered from ${formData.name} (${formData.email})`, type: 'system' },
-        { text: `"${formData.message.slice(0, 50)}${formData.message.length > 50 ? '...' : ''}"`, type: 'output' },
-        { text: `System: Message dispatch finalized successfully.`, type: 'system' }
-      ])
+      const response = await fetch("https://formsubmit.co/ajax/arghyabhattacharjee876@gmail.com", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `New Portfolio Message from ${formData.name}`
+        })
+      })
 
-      setFormStatus({ success: true, loading: false, msg: 'Message sent successfully!' })
-      setFormData({ name: '', email: '', message: '' })
+      const data = await response.json()
+
+      if (response.ok && data.success === 'true') {
+        setTerminalHistory(prev => [
+          ...prev,
+          { text: `System: Incoming message buffered from ${formData.name} (${formData.email})`, type: 'system' },
+          { text: `"${formData.message.slice(0, 50)}${formData.message.length > 50 ? '...' : ''}"`, type: 'output' },
+          { text: `System: Message dispatch finalized successfully.`, type: 'system' }
+        ])
+
+        setFormStatus({ success: true, loading: false, msg: 'Message sent successfully!' })
+        setFormData({ name: '', email: '', message: '' })
+      } else {
+        throw new Error(data.message || 'API response failure')
+      }
     } catch (err) {
       console.error('Contact Form submission error:', err)
-      setFormStatus({ success: false, loading: false, msg: 'Submission failed.' })
+      setFormStatus({ success: false, loading: false, msg: 'Submission failed. Please try again.' })
     }
   }
 
@@ -177,7 +195,7 @@ export default function ContactTerminal() {
           <form onSubmit={handleFormSubmit} className="flex flex-col gap-4 text-left">
             
             <h4 className="text-sm font-mono tracking-widest text-theme-text uppercase font-bold mb-2">
-              Message Dispatch Pad
+              Send Message
             </h4>
 
             {/* Name Input */}
