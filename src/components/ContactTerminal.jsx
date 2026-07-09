@@ -12,7 +12,7 @@ export default function ContactTerminal() {
   const inputRef = useRef(null)
   const isFirstRender = useRef(true)
 
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
   const [formStatus, setFormStatus] = useState({ success: false, loading: false, msg: '' })
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export default function ContactTerminal() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       setFormStatus({ success: false, loading: false, msg: 'Please populate all input fields.' })
       return
     }
@@ -104,8 +104,9 @@ export default function ContactTerminal() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
+          subject: formData.subject,
           message: formData.message,
-          _subject: `New Portfolio Message from ${formData.name}`
+          _subject: `Portfolio Contact: ${formData.subject}`
         })
       })
 
@@ -115,12 +116,13 @@ export default function ContactTerminal() {
         setTerminalHistory(prev => [
           ...prev,
           { text: `System: Incoming message buffered from ${formData.name} (${formData.email})`, type: 'system' },
+          { text: `Subject: ${formData.subject}`, type: 'system' },
           { text: `"${formData.message.slice(0, 50)}${formData.message.length > 50 ? '...' : ''}"`, type: 'output' },
           { text: `System: Message dispatch finalized successfully.`, type: 'system' }
         ])
 
         setFormStatus({ success: true, loading: false, msg: 'Message sent successfully!' })
-        setFormData({ name: '', email: '', message: '' })
+        setFormData({ name: '', email: '', subject: '', message: '' })
       } else {
         throw new Error(data.message || 'API response failure')
       }
@@ -225,6 +227,21 @@ export default function ContactTerminal() {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full bg-theme-bg/30 border border-theme-border rounded px-3 py-2 text-xs text-theme-text focus:outline-none focus:border-cyber-purple transition-colors"
                 placeholder="steve@shield.com"
+              />
+            </div>
+
+            {/* Subject Input */}
+            <div className="flex flex-col gap-1">
+              <label htmlFor="form-subject" className="text-[10px] font-mono text-theme-muted uppercase tracking-widest">
+                Subject
+              </label>
+              <input
+                id="form-subject"
+                type="text"
+                value={formData.subject}
+                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                className="w-full bg-theme-bg/30 border border-theme-border rounded px-3 py-2 text-xs text-theme-text focus:outline-none focus:border-cyber-purple transition-colors"
+                placeholder="Collaboration Proposal"
               />
             </div>
 
