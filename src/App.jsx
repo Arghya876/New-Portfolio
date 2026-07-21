@@ -1,31 +1,22 @@
 import { useEffect, lazy, Suspense } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Journey from './components/Journey'
 
-// Lazy load routing modules
+// Lazy load below-the-fold heavy components for top performance
 const Skills = lazy(() => import('./components/Skills'))
 const ProjectsStory = lazy(() => import('./components/ProjectsStory'))
 const Achievements = lazy(() => import('./components/Achievements'))
 const ContactTerminal = lazy(() => import('./components/ContactTerminal'))
 
-// Scroll to top helper component to reset viewport scroll positions on route change
-function ScrollToTop() {
-  const { pathname } = useLocation()
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
-  return null
-}
-
 function App() {
-  // Disable auto-scroll restoration on load
+  // Force scroll to top and disable auto-scroll restoration on load
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual'
     }
+    window.scrollTo(0, 0)
   }, [])
 
   // Initialize Lenis Smooth Scroll
@@ -65,18 +56,15 @@ function App() {
       </div>
 
       <Navbar />
-      <ScrollToTop />
 
       <main className="relative z-10 w-full flex flex-col items-center">
-        <Suspense fallback={<div className="py-24 text-center text-xs font-mono text-cyber-blue animate-pulse">LOADING MODULES...</div>}>
-          <Routes>
-            <Route path="/" element={<Hero />} />
-            <Route path="/journey" element={<Journey />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/projects" element={<ProjectsStory />} />
-            <Route path="/achievements" element={<Achievements />} />
-            <Route path="/connect" element={<ContactTerminal />} />
-          </Routes>
+        <Hero />
+        <Journey />
+        <Suspense fallback={<div className="py-12 text-center text-xs font-mono text-cyber-blue animate-pulse">LOADING MODULES...</div>}>
+          <Skills />
+          <ProjectsStory />
+          <Achievements />
+          <ContactTerminal />
         </Suspense>
       </main>
 

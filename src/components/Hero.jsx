@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaChevronDown } from 'react-icons/fa'
 
@@ -79,7 +78,6 @@ const fetchGitHubRepoCount = async (username, fallback = 15) => {
 };
 
 export default function Hero() {
-  const navigate = useNavigate()
   const [roleIndex, setRoleIndex] = useState(0)
   const [displayText, setDisplayText] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
@@ -120,7 +118,10 @@ export default function Hero() {
   }, [displayText, isDeleting, roleIndex])
 
   const handleScrollNext = () => {
-    navigate('/journey')
+    const nextSection = document.getElementById('story')
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 
   return (
@@ -189,7 +190,10 @@ export default function Hero() {
               EXPLORE JOURNEY
             </button>
             <button
-              onClick={() => navigate('/connect')}
+              onClick={() => {
+                const contactSection = document.getElementById('contact')
+                if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' })
+              }}
               id="hire-me-btn"
               aria-label="Scroll down to the contact section to hire me"
               className="px-5 py-2.5 rounded-lg border border-theme-border text-theme-muted hover:text-theme-text font-mono text-xs tracking-wider hover:bg-theme-card/50 transition-all cursor-pointer"
