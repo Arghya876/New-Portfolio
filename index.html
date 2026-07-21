@@ -32,41 +32,79 @@
     <meta property="og:title" content="Arghya Bhattacharjee | MERN Stack & Full Stack Developer | Patent Holder" />
     <meta property="og:description" content="Professional portfolio of Arghya Bhattacharjee - B.Tech Information Technology graduate specializing in MERN Stack, Full Stack Development, AI, and IoT solutions. Patent co-holder and developer." />
     <meta property="og:image" content="https://www.arghya.tech/images/profile_pic.webp" />
+    <meta property="og:site_name" content="Arghya Bhattacharjee Portfolio" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://www.arghya.tech/" />
-    <meta property="twitter:title" content="Arghya Bhattacharjee | MERN Stack & Full Stack Developer | Patent Holder" />
-    <meta property="twitter:description" content="Professional portfolio of Arghya Bhattacharjee - B.Tech Information Technology graduate specializing in MERN Stack, Full Stack Development, AI, and IoT solutions. Patent co-holder and developer." />
-    <meta property="twitter:image" content="https://www.arghya.tech/images/profile_pic.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.arghya.tech/" />
+    <meta name="twitter:title" content="Arghya Bhattacharjee | MERN Stack & Full Stack Developer | Patent Holder" />
+    <meta name="twitter:description" content="Professional portfolio of Arghya Bhattacharjee - B.Tech Information Technology graduate specializing in MERN Stack, Full Stack Development, AI, and IoT solutions. Patent co-holder and developer." />
+    <meta name="twitter:image" content="https://www.arghya.tech/images/profile_pic.webp" />
 
-    <!-- Google Structured Data / JSON-LD Person Schema -->
+    <!-- Google Structured Data / JSON-LD Knowledge Graph Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Arghya Bhattacharjee",
-      "alternateName": ["Arghya", "Arghya876"],
-      "url": "https://www.arghya.tech/",
-      "image": "https://www.arghya.tech/images/profile_pic.webp",
-      "jobTitle": "Full Stack & MERN Stack Developer",
-      "sameAs": [
-        "https://www.linkedin.com/in/arghya-bhattacharjee876/",
-        "https://github.com/Arghya876",
-        "https://www.facebook.com/arghya.bhattacharjee876",
-        "https://www.instagram.com/arghya.bhattacharjee876/"
-      ],
-      "knowsAbout": [
-        "Full Stack Development",
-        "MERN Stack",
-        "React.js",
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "Python",
-        "IoT",
-        "Computer Vision",
-        "AI"
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://www.arghya.tech/#person",
+          "name": "Arghya Bhattacharjee",
+          "givenName": "Arghya",
+          "familyName": "Bhattacharjee",
+          "alternateName": ["Arghya", "Arghya876"],
+          "url": "https://www.arghya.tech/",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://www.arghya.tech/images/profile_pic.webp",
+            "caption": "Arghya Bhattacharjee"
+          },
+          "jobTitle": "MERN Stack & Full Stack Developer",
+          "description": "Full Stack Developer specializing in React, Node.js, Express.js, MongoDB, Python, AI, and IoT solutions. Patent co-holder.",
+          "sameAs": [
+            "https://github.com/Arghya876",
+            "https://www.linkedin.com/in/arghya-bhattacharjee876/",
+            "https://www.instagram.com/arghya.bhattacharjee876/",
+            "https://www.facebook.com/arghya.bhattacharjee876"
+          ],
+          "knowsAbout": [
+            "Full Stack Development",
+            "MERN Stack",
+            "React.js",
+            "Node.js",
+            "Express.js",
+            "MongoDB",
+            "Python",
+            "IoT",
+            "Computer Vision",
+            "Artificial Intelligence"
+          ],
+          "mainEntityOfPage": "https://www.arghya.tech/"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.arghya.tech/#website",
+          "url": "https://www.arghya.tech/",
+          "name": "Arghya Bhattacharjee | Portfolio",
+          "description": "Official website and portfolio of Arghya Bhattacharjee - MERN Stack & Full Stack Developer.",
+          "publisher": {
+            "@id": "https://www.arghya.tech/#person"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://www.arghya.tech/#webpage",
+          "url": "https://www.arghya.tech/",
+          "name": "Arghya Bhattacharjee - Official Portfolio",
+          "isPartOf": {
+            "@id": "https://www.arghya.tech/#website"
+          },
+          "mainEntity": {
+            "@id": "https://www.arghya.tech/#person"
+          }
+        }
       ]
     }
     </script>

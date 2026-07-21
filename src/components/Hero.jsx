@@ -58,7 +58,7 @@ const fetchGitHubRepoCount = async (username, fallback = 15) => {
       if (Date.now() - timestamp < 3600000 && typeof data.public_repos === 'number') {
         return data.public_repos;
       }
-    } catch (e) {
+    } catch {
       localStorage.removeItem(cacheKey);
     }
   }

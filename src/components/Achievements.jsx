@@ -241,7 +241,7 @@ const fetchGitHubData = async (url, cacheKey, expiryMs = 3600000) => {
       if (Date.now() - timestamp < expiryMs) {
         return data;
       }
-    } catch (e) {
+    } catch {
       localStorage.removeItem(cacheKey);
     }
   }
@@ -458,7 +458,7 @@ export default function Achievements() {
               <a
                 href="https://github.com/Arghya876"
                 target="_blank"
-                rel="noreferrer"
+                rel="me noopener noreferrer"
                 id="achievements-github-profile-link"
                 aria-label="Visit Arghya's GitHub Profile"
                 className="text-[10px] font-mono text-cyber-blue hover:underline"

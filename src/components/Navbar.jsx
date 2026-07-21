@@ -146,7 +146,7 @@ export default function Navbar() {
               <a
                 href="https://github.com/Arghya876"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="me noopener noreferrer"
                 id="nav-desktop-social-github"
                 aria-label="Access GitHub Profile"
                 className="text-theme-muted hover:text-theme-text transition-colors text-lg"
@@ -157,7 +157,7 @@ export default function Navbar() {
               <a
                 href="https://www.linkedin.com/in/arghya-bhattacharjee876/"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="me noopener noreferrer"
                 id="nav-desktop-social-linkedin"
                 aria-label="Access LinkedIn Profile"
                 className="text-theme-muted hover:text-theme-text transition-colors text-lg"
@@ -168,7 +168,7 @@ export default function Navbar() {
               <a
                 href="https://www.facebook.com/arghya.bhattacharjee876"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="me noopener noreferrer"
                 id="nav-desktop-social-facebook"
                 aria-label="Access Facebook Profile"
                 className="text-theme-muted hover:text-theme-text transition-colors text-lg"
@@ -179,7 +179,7 @@ export default function Navbar() {
               <a
                 href="https://www.instagram.com/arghya.bhattacharjee876/"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="me noopener noreferrer"
                 id="nav-desktop-social-instagram"
                 aria-label="Access Instagram Profile"
                 className="text-theme-muted hover:text-theme-text transition-colors text-lg"
@@ -269,7 +269,7 @@ export default function Navbar() {
               <a 
                 href="https://github.com/Arghya876" 
                 target="_blank" 
-                rel="noopener noreferrer" 
+                rel="me noopener noreferrer" 
                 id="nav-mobile-social-github" 
                 aria-label="Access GitHub Profile" 
                 className="hover:text-theme-text"
@@ -279,7 +279,7 @@ export default function Navbar() {
               <a 
                 href="https://www.linkedin.com/in/arghya-bhattacharjee876/" 
                 target="_blank" 
-                rel="noopener noreferrer" 
+                rel="me noopener noreferrer" 
                 id="nav-mobile-social-linkedin" 
                 aria-label="Access LinkedIn Profile" 
                 className="hover:text-theme-text"
@@ -289,7 +289,7 @@ export default function Navbar() {
               <a 
                 href="https://www.facebook.com/arghya.bhattacharjee876" 
                 target="_blank" 
-                rel="noopener noreferrer" 
+                rel="me noopener noreferrer" 
                 id="nav-mobile-social-facebook" 
                 aria-label="Access Facebook Profile" 
                 className="hover:text-theme-text"
@@ -299,7 +299,7 @@ export default function Navbar() {
               <a 
                 href="https://www.instagram.com/arghya.bhattacharjee876/" 
                 target="_blank" 
-                rel="noopener noreferrer" 
+                rel="me noopener noreferrer" 
                 id="nav-mobile-social-instagram" 
                 aria-label="Access Instagram Profile" 
                 className="hover:text-theme-text"

@@ -548,7 +548,7 @@ export default function Skills() {
             <a 
               href="https://www.facebook.com/arghya.bhattacharjee876" 
               target="_blank" 
-              rel="noopener noreferrer" 
+              rel="me noopener noreferrer" 
               id="hobby-header-social-facebook"
               aria-label="Access creative Facebook Profile"
               className="hover:text-cyber-blue transition-colors hover:scale-110 active:scale-95 duration-200"
@@ -559,7 +559,7 @@ export default function Skills() {
             <a 
               href="https://www.instagram.com/arghya.bhattacharjee876/" 
               target="_blank" 
-              rel="noopener noreferrer" 
+              rel="me noopener noreferrer" 
               id="hobby-header-social-instagram"
               aria-label="Access creative Instagram Profile"
               className="hover:text-cyber-pink transition-colors hover:scale-110 active:scale-95 duration-200"

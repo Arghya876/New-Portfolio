@@ -336,7 +336,7 @@ export default function ContactTerminal() {
             <a 
               href="https://www.linkedin.com/in/arghya-bhattacharjee876/" 
               target="_blank" 
-              rel="noopener noreferrer" 
+              rel="me noopener noreferrer" 
               id="contact-social-linkedin"
               aria-label="Access LinkedIn Profile"
               className="hover:text-theme-text transition-colors" 
@@ -347,7 +347,7 @@ export default function ContactTerminal() {
             <a 
               href="https://github.com/Arghya876" 
               target="_blank" 
-              rel="noopener noreferrer" 
+              rel="me noopener noreferrer" 
               id="contact-social-github"
               aria-label="Access GitHub Profile"
               className="hover:text-theme-text transition-colors" 
@@ -358,7 +358,7 @@ export default function ContactTerminal() {
             <a 
               href="https://www.facebook.com/arghya.bhattacharjee876" 
               target="_blank" 
-              rel="noopener noreferrer" 
+              rel="me noopener noreferrer" 
               id="contact-social-facebook"
               aria-label="Access Facebook Profile"
               className="hover:text-theme-text transition-colors" 
@@ -369,7 +369,7 @@ export default function ContactTerminal() {
             <a 
               href="https://www.instagram.com/arghya.bhattacharjee876/" 
               target="_blank" 
-              rel="noopener noreferrer" 
+              rel="me noopener noreferrer" 
               id="contact-social-instagram"
               aria-label="Access Instagram Profile"
               className="hover:text-theme-text transition-colors" 
