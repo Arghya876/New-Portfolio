@@ -1,20 +1,27 @@
 import { useState, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaSun, FaMoon, FaFacebook, FaInstagram } from 'react-icons/fa'
 
 const navSections = [
-  { id: 'hero', label: 'Intro' },
-  { id: 'story', label: 'Journey' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'certifications', label: 'Achievements' },
-  { id: 'contact', label: 'Connect' }
+  { id: 'hero', label: 'Intro', path: '/' },
+  { id: 'story', label: 'Journey', path: '/journey' },
+  { id: 'skills', label: 'Skills', path: '/skills' },
+  { id: 'projects', label: 'Projects', path: '/projects' },
+  { id: 'certifications', label: 'Achievements', path: '/achievements' },
+  { id: 'contact', label: 'Connect', path: '/connect' }
 ]
 
 export default function Navbar() {
-  const [activeSection, setActiveSection] = useState('hero')
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  // Compute active section based on current path
+  const currentPath = location.pathname
+  const activeSectionObj = navSections.find((s) => s.path === currentPath) || navSections[0]
+  const activeSection = activeSectionObj.id
 
   // Initialize theme from localStorage (default to light mode)
   const [isDark, setIsDark] = useState(() => {
@@ -44,40 +51,9 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Intersection Observer to update active section dynamically
-  useEffect(() => {
-    const observers = []
-    
-    navSections.forEach((section) => {
-      const el = document.getElementById(section.id)
-      if (!el) return
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveSection(section.id)
-          }
-        },
-        {
-          rootMargin: '-30% 0px -40% 0px',
-          threshold: 0
-        }
-      )
-      observer.observe(el)
-      observers.push({ observer, el })
-    })
-
-    return () => {
-      observers.forEach(({ observer, el }) => observer.unobserve(el))
-    }
-  }, [])
-
-  const scrollTo = (id) => {
-    const el = document.getElementById(id)
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
-      setMobileMenuOpen(false)
-    }
+  const navigatePage = (path) => {
+    navigate(path)
+    setMobileMenuOpen(false)
   }
 
   return (
@@ -92,7 +68,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between w-full">
           {/* Logo */}
           <button 
-            onClick={() => scrollTo('hero')} 
+            onClick={() => navigatePage('/')} 
             id="nav-logo-btn"
             aria-label="Arghya Bhattacharjee Portfolio Home"
             className="group flex items-center gap-2 cursor-pointer font-sans"
@@ -108,7 +84,7 @@ export default function Navbar() {
               <button
                 key={section.id}
                 id={`nav-desktop-btn-${section.id}`}
-                onClick={() => scrollTo(section.id)}
+                onClick={() => navigatePage(section.path)}
                 aria-label={`Navigate to ${section.label} section`}
                 className={`uppercase tracking-wider transition-colors relative py-1 cursor-pointer ${
                   activeSection === section.id
@@ -240,7 +216,7 @@ export default function Navbar() {
                 <button
                   key={section.id}
                   id={`nav-mobile-btn-${section.id}`}
-                  onClick={() => scrollTo(section.id)}
+                  onClick={() => navigatePage(section.path)}
                   aria-label={`Navigate to ${section.label} section`}
                   className={`uppercase tracking-wider transition-colors py-2 cursor-pointer ${
                     activeSection === section.id
@@ -329,7 +305,7 @@ export default function Navbar() {
           <button
             key={section.id}
             id={`nav-side-dot-${section.id}`}
-            onClick={() => scrollTo(section.id)}
+            onClick={() => navigatePage(section.path)}
             aria-label={`Scroll page view to ${section.label} section`}
             className="group relative flex items-center justify-center p-1.5 focus:outline-none cursor-pointer"
             title={section.label}

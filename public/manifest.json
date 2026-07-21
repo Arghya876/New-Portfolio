@@ -1,0 +1,24 @@
+{
+  "name": "Arghya Bhattacharjee | MERN Stack & Full Stack Developer",
+  "short_name": "Arghya Bhattacharjee",
+  "description": "Professional portfolio of Arghya Bhattacharjee - B.Tech Information Technology graduate specializing in MERN Stack, Full Stack Development, AI, and IoT solutions. Patent co-holder and developer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090a0f",
+  "theme_color": "#7c3aed",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/profile_pic.webp",
+      "sizes": "288x288",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/Avatar.webp",
+      "sizes": "288x288",
+      "type": "image/webp",
+      "purpose": "maskable"
+    }
+  ]
+}

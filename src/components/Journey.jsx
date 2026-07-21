@@ -63,6 +63,8 @@ export default function Journey() {
               <img
                 src="/images/laptop_pic.webp"
                 alt="Workspace Laptop"
+                width={44}
+                height={44}
                 loading="lazy"
                 className="w-full h-full object-cover rounded-full"
               />
@@ -73,11 +75,11 @@ export default function Journey() {
           </div>
 
           <p className="text-sm text-theme-muted leading-relaxed mt-3">
-            Recent B.Tech IT graduate with strong fundamentals in MERN stack web applications, REST APIs, and database design. I focus on developing clean, responsive frontend pages and modular backend endpoints.
+            As a B.Tech Information Technology graduate, Arghya Bhattacharjee possesses solid engineering fundamentals in MERN stack web applications, secure REST APIs, and relational/non-relational database design. He focuses on developing high-quality, responsive user interfaces and modular server-side endpoints.
           </p>
 
           <p className="text-sm text-theme-muted leading-relaxed mt-3">
-            Through academic research and hands-on projects, I co-invented a published patent for AI-based hazard detection. Dedicated to creating robust software interfaces for businesses and automated systems.
+            Combining academic theory with hands-on development, Arghya Bhattacharjee co-invented a published patent for an AI-powered safety and hazard warning device. He is dedicated to engineering robust, scalable software interfaces and automated IoT integrations.
           </p>
 
           {/* Academics Grid */}

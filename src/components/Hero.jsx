@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaChevronDown } from 'react-icons/fa'
 
@@ -78,6 +79,7 @@ const fetchGitHubRepoCount = async (username, fallback = 15) => {
 };
 
 export default function Hero() {
+  const navigate = useNavigate()
   const [roleIndex, setRoleIndex] = useState(0)
   const [displayText, setDisplayText] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
@@ -118,10 +120,7 @@ export default function Hero() {
   }, [displayText, isDeleting, roleIndex])
 
   const handleScrollNext = () => {
-    const nextSection = document.getElementById('story')
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth' })
-    }
+    navigate('/journey')
   }
 
   return (
@@ -171,7 +170,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            I am a passionate software developer specializing in building modern web applications using the MERN Stack (MongoDB, Express.js, React, Node.js) and designing intelligent systems. I am highly passionate about Artificial Intelligence & Machine Learning, constantly exploring deep learning, computer vision, and automated IoT systems.
+            As a software engineer, Arghya Bhattacharjee specializes in architecting high-performance web applications using the MERN Stack (MongoDB, Express.js, React, Node.js) and Vite. Beyond core full-stack engineering, Arghya Bhattacharjee designs intelligent systems utilizing Python, machine learning, and computer vision. His interdisciplinary interests extend to deep-space astrophotography, digital art, and musical composition, blending scientific precision with creative design.
           </motion.p>
 
           {/* Quick Buttons */}
@@ -190,10 +189,7 @@ export default function Hero() {
               EXPLORE JOURNEY
             </button>
             <button
-              onClick={() => {
-                const contactSection = document.getElementById('contact')
-                if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' })
-              }}
+              onClick={() => navigate('/connect')}
               id="hire-me-btn"
               aria-label="Scroll down to the contact section to hire me"
               className="px-5 py-2.5 rounded-lg border border-theme-border text-theme-muted hover:text-theme-text font-mono text-xs tracking-wider hover:bg-theme-card/50 transition-all cursor-pointer"
@@ -296,6 +292,8 @@ export default function Hero() {
                 <img
                   src="/images/profile_pic.webp"
                   alt="Arghya Bhattacharjee"
+                  width={288}
+                  height={288}
                   fetchPriority="high"
                   className={`w-full h-full object-cover rounded-full transition-all duration-700 ease-out ${frontLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
                   onLoad={() => setFrontLoaded(true)}
@@ -321,6 +319,8 @@ export default function Hero() {
                 <img
                   src="/images/Avatar.webp"
                   alt="Arghya Avatar"
+                  width={288}
+                  height={288}
                   fetchPriority="high"
                   className={`w-full h-full object-cover rounded-full transition-all duration-700 ease-out ${backLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
                   onLoad={() => setBackLoaded(true)}
