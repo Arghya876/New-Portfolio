@@ -1,4 +1,26 @@
 User-agent: *
 Allow: /
 
+# Allow AI Agents and Crawlers (Agentic Browsing)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
 Sitemap: https://www.arghya.tech/sitemap.xml

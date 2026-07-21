@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Arghya Bhattacharjee Portfolio",
+  "name_for_model": "arghya_bhattacharjee_portfolio",
+  "description_for_human": "Official portfolio of Arghya Bhattacharjee, MERN Stack Developer, Full Stack Engineer, and Patent Holder.",
+  "description_for_model": "Provides details on Arghya Bhattacharjee's professional skills, software engineering projects, patent innovations, and contact links.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://www.arghya.tech/llms.txt"
+  },
+  "logo_url": "https://www.arghya.tech/images/profile_pic.webp",
+  "contact_email": "arghyabhattacharjee876@gmail.com",
+  "legal_info_url": "https://www.arghya.tech/"
+}

@@ -1,12 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import Lenis from 'lenis'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Journey from './components/Journey'
-import Skills from './components/Skills'
-import ProjectsStory from './components/ProjectsStory'
-import Achievements from './components/Achievements'
-import ContactTerminal from './components/ContactTerminal'
+
+// Lazy load below-the-fold heavy components for top performance
+const Skills = lazy(() => import('./components/Skills'))
+const ProjectsStory = lazy(() => import('./components/ProjectsStory'))
+const Achievements = lazy(() => import('./components/Achievements'))
+const ContactTerminal = lazy(() => import('./components/ContactTerminal'))
 
 function App() {
   // Force scroll to top and disable auto-scroll restoration on load
@@ -58,10 +60,12 @@ function App() {
       <main className="relative z-10 w-full flex flex-col items-center">
         <Hero />
         <Journey />
-        <Skills />
-        <ProjectsStory />
-        <Achievements />
-        <ContactTerminal />
+        <Suspense fallback={<div className="py-12 text-center text-xs font-mono text-cyber-blue animate-pulse">LOADING MODULES...</div>}>
+          <Skills />
+          <ProjectsStory />
+          <Achievements />
+          <ContactTerminal />
+        </Suspense>
       </main>
 
       {/* Footer */}
