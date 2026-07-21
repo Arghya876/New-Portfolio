@@ -22,7 +22,7 @@ const certs = [
     color: '#f7df1e',
     description: 'Cisco, in collaboration with OpenEDG JS Institute, verifies the earner of this badge successfully completed the JavaScript Essentials 1 course and achieved the student level credentials. Earners know the syntax of the core JavaScript; can work with variables, operators, flow control, and functions; know the basics of data types system; think algorithmically and can analyze problems using a programmatic conceptual apparatus; and can design, develop, and improve simple JavaScript programs.',
     credlyId: '87b37e93-3087-48ff-a193-e836dc99e086',
-    pdf: 'https://www.credly.com/badges/87b37e93-3087-48ff-a193-e836dc99e086'
+    pdf: '/images/Achivement/JavaScriptEssentials1 Certificate.pdf'
   },
   { 
     title: 'Google Cybersecurity Professional Certificate', 
