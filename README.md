@@ -1,8 +1,6 @@
-# Premium Developer Portfolio
+# Arghya Bhattacharjee | Portfolio
 
-A highly interactive, visually stunning, and modern developer portfolio built for **Arghya Bhattacharjee** (MERN Stack Developer, Full Stack Developer, AI & IoT Enthusiast, and Patent Holder).
-
-This project showcases professional experiences, milestones, technical projects, certifications, and interactive terminal capabilities.
+Welcome to my new personal portfolio! This repository showcases my latest skills, full-stack software development experience, patent publication, projects, certifications, and capabilities as a **MERN Stack & Full Stack Developer, AI & IoT Enthusiast, and Patent Holder**.
 
 ---
 
