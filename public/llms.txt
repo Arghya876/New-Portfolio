@@ -1,0 +1,30 @@
+# Arghya Bhattacharjee - Portfolio & AI Agent Documentation
+
+> Full Stack Developer & MERN Specialist | Patent Co-Holder | B.Tech IT Graduate
+
+## Summary
+Arghya Bhattacharjee is a B.Tech Information Technology graduate specializing in Full Stack Development (MERN Stack), AI/Computer Vision solutions, and IoT integrations. He co-holds a patent for an AI-based Gas Leakage & Fire Alert System and has built multiple end-to-end full stack web applications.
+
+## Technical Skills
+- **Frontend**: React.js, Vite, Tailwind CSS, Framer Motion, HTML5, CSS3, JavaScript (ES6+)
+- **Backend**: Node.js, Express.js, RESTful APIs, Python
+- **Databases**: MongoDB, MySQL, Firebase
+- **AI & IoT**: OpenCV, Computer Vision, Arduino, Raspberry Pi, ESP8266/ESP32, Sensor Systems
+- **Tools**: Git, GitHub, Postman, Vercel, VS Code
+
+## Key Projects
+- **NovaCart**: Feature-rich MERN Stack E-Commerce platform with user authentication, cart management, and payment integration.
+- **Little Guardian**: Smart IoT & AI-powered child safety monitoring system.
+- **LPG Gas Leakage & Fire Alert System**: Patent-granted AI/IoT safety device for instant threat detection and automated alerts.
+- **Face Emotion & Obstruction Recognition**: Real-time Python Computer Vision application with automated WhatsApp alerts.
+
+## Primary Links & Social Profiles
+- **Portfolio**: https://www.arghya.tech/
+- **LinkedIn**: https://www.linkedin.com/in/arghya-bhattacharjee876/
+- **GitHub**: https://github.com/Arghya876
+- **Facebook**: https://www.facebook.com/arghya.bhattacharjee876
+- **Instagram**: https://www.instagram.com/arghya.bhattacharjee876/
+- **Email**: arghyabhattacharjee876@gmail.com
+
+## Detailed Documentation
+- [Full Profile & Project Details](https://www.arghya.tech/llms-full.txt)

@@ -1,0 +1,33 @@
+# Arghya Bhattacharjee - Complete Professional Profile
+
+## Personal Information
+- **Full Name**: Arghya Bhattacharjee
+- **Role**: MERN Stack Developer, Full Stack Engineer, Patent Co-Holder
+- **Website**: https://www.arghya.tech/
+- **Email**: arghyabhattacharjee876@gmail.com
+- **LinkedIn**: https://www.linkedin.com/in/arghya-bhattacharjee876/
+- **GitHub**: https://github.com/Arghya876
+- **Facebook**: https://www.facebook.com/arghya.bhattacharjee876
+- **Instagram**: https://www.instagram.com/arghya.bhattacharjee876/
+
+## Education & Qualifications
+- **Degree**: Bachelor of Technology (B.Tech) in Information Technology
+- **Specialization**: MERN Stack, Full Stack Web Development, Artificial Intelligence, IoT Systems
+
+## Patents & Innovations
+- **Patent Title**: AI-based LPG Gas Leakage Detection & Fire Alert System
+- **Role**: Co-Inventor / Developer
+- **Domain**: Artificial Intelligence, IoT Safety Systems, Real-Time Sensor Processing
+
+## Comprehensive Technical Stack
+- **Frontend Technologies**: React.js, Vite, Tailwind CSS, Framer Motion, HTML5, CSS3, JavaScript (ES6+), Responsive Web Design
+- **Backend Technologies**: Node.js, Express.js, REST APIs, Python
+- **Database Systems**: MongoDB, MySQL, Firebase
+- **Version Control & DevOps**: Git, GitHub, Vercel Deployment, CI/CD Workflow
+- **Computer Vision & Hardware**: OpenCV, Python Computer Vision, Arduino IDE, ESP8266, ESP32, IoT Sensors
+
+## Full Portfolio Projects
+1. **NovaCart E-Commerce**: Full-stack MERN e-commerce application featuring responsive UI, shopping cart state management, user authentication, and product catalog filtering.
+2. **Little Guardian**: AI and IoT-driven child monitoring system integrating sensor hardware and real-time alert dispatch.
+3. **Face Obstruction Detection**: Python computer vision model using OpenCV to detect facial obstruction and automatically trigger WhatsApp alerts.
+4. **Face Emotion Recognition**: Machine learning system analyzing facial expressions in real-time video streams.
