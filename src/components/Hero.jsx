@@ -171,7 +171,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            As a software engineer, Arghya Bhattacharjee specializes in architecting high-performance web applications using the MERN Stack (MongoDB, Express.js, React, Node.js) and Vite. Beyond core full-stack engineering, Arghya Bhattacharjee designs intelligent systems utilizing Python, machine learning, and computer vision. His interdisciplinary interests extend to deep-space astrophotography, digital art, and musical composition, blending scientific precision with creative design.
+            I am a passionate software developer specializing in building modern web applications using the MERN Stack (MongoDB, Express.js, React, Node.js) and designing intelligent systems. I am highly passionate about Artificial Intelligence & Machine Learning, constantly exploring deep learning, computer vision, and automated IoT systems.
           </motion.p>
 
           {/* Quick Buttons */}

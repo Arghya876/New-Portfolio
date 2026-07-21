@@ -44,32 +44,31 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Intersection Observer to update active section dynamically
+  // Scroll-spy listener to update active section dynamically and robustly
   useEffect(() => {
-    const observers = []
-    
-    navSections.forEach((section) => {
-      const el = document.getElementById(section.id)
-      if (!el) return
+    const handleScrollSpy = () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 3
+      
+      // If we are at the bottom of the page, force highlighting of the last section (Connect/Contact)
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50) {
+        setActiveSection(navSections[navSections.length - 1].id)
+        return
+      }
 
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveSection(section.id)
-          }
-        },
-        {
-          rootMargin: '-30% 0px -40% 0px',
-          threshold: 0
+      for (const section of navSections) {
+        const el = document.getElementById(section.id)
+        if (!el) continue
+        const top = el.offsetTop
+        const height = el.offsetHeight
+        if (scrollPosition >= top && scrollPosition < top + height) {
+          setActiveSection(section.id)
         }
-      )
-      observer.observe(el)
-      observers.push({ observer, el })
-    })
-
-    return () => {
-      observers.forEach(({ observer, el }) => observer.unobserve(el))
+      }
     }
+
+    window.addEventListener('scroll', handleScrollSpy)
+    handleScrollSpy()
+    return () => window.removeEventListener('scroll', handleScrollSpy)
   }, [])
 
   const scrollTo = (id) => {
