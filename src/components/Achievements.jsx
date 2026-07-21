@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
@@ -84,6 +84,9 @@ Feeling excited and motivated after diving into the Arcade platform. Learning an
 ]
 
 function CertDetailModal({ cert, onClose }) {
+  const canvasRef = useRef(null)
+  const confettiInstanceRef = useRef(null)
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose()
@@ -91,6 +94,15 @@ function CertDetailModal({ cert, onClose }) {
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [onClose])
+
+  useEffect(() => {
+    if (canvasRef.current) {
+      confettiInstanceRef.current = confetti.create(canvasRef.current, {
+        resize: true,
+        useWorker: true
+      })
+    }
+  }, [])
 
   const handleConfetti = (e) => {
     e.stopPropagation()
@@ -101,8 +113,8 @@ function CertDetailModal({ cert, onClose }) {
       x = (rect.left + rect.width / 2) / window.innerWidth
       y = (rect.top + rect.height / 2) / window.innerHeight
     }
-    // Trigger confetti from the button position with zIndex above modal (which has z-9999)
-    confetti({
+    const fire = confettiInstanceRef.current || confetti
+    fire({
       particleCount: 80,
       spread: 70,
       origin: { x, y },
@@ -116,6 +128,11 @@ function CertDetailModal({ cert, onClose }) {
       className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out"
       onClick={onClose}
     >
+      {/* Dedicated Canvas for Modal Confetti rendered on top of overlay */}
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 pointer-events-none z-[100000] w-full h-full"
+      />
       <motion.div
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
