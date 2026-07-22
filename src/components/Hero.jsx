@@ -171,7 +171,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            I am a passionate Full Stack Software Engineer and MERN Stack Developer based in Kolkata, India. I specialize in building modern, performant web applications using MongoDB, Express.js, React, and Node.js, alongside designing intelligent IoT systems and artificial intelligence solutions.
+            I am a passionate Full Stack Software Engineer and MERN Stack Developer. I specialize in building modern, performant web applications using MongoDB, Express.js, React, and Node.js, alongside designing intelligent IoT systems and artificial intelligence solutions.
           </motion.p>
 
           {/* Quick Buttons */}
