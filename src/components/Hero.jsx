@@ -6,7 +6,7 @@ const roles = [
   'MERN Stack Developer',
   'Full Stack Developer',
   'AI & IoT Enthusiast',
-  'Patent Holder'
+  'Software Engineer'
 ]
 
 function StatCounter({ target, suffix = '', label }) {

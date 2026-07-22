@@ -1,6 +1,6 @@
 # Arghya Bhattacharjee | Portfolio
 
-Welcome to my new personal portfolio! This repository showcases my latest skills, full-stack software development experience, patent publication, projects, certifications, and capabilities as a **MERN Stack & Full Stack Developer, AI & IoT Enthusiast, and Patent Holder**.
+Welcome to my new personal portfolio! This repository showcases my latest skills, full-stack software development experience, patent publication, projects, certifications, and capabilities as a **Software Engineer, MERN Stack & Full Stack Developer, and AI & IoT Enthusiast**.
 
 ---
 
@@ -36,7 +36,7 @@ This portfolio is built with modern **Technical SEO Best Practices** to ensure h
 - Provides Google's Knowledge Graph with clear entity identifiers (`@id`), job titles, primary domain URLs, and technical skill categorizations.
 
 ### 2. Meta Tags & Semantic HTML
-- **Custom Page Title**: Target keyword-rich title tag (`Arghya Bhattacharjee | MERN Stack & Full Stack Developer | Patent Holder`).
+- **Custom Page Title**: Target keyword-rich title tag (`Arghya Bhattacharjee | Software Engineer | MERN Stack & Full Stack Developer`).
 - **Meta Description & Keywords**: Under 160 characters, focused on core skill set, patent achievements, and technical stack.
 - **Canonical Link**: Implemented `<link rel="canonical" href="https://www.arghya.tech/" />` to prevent duplicate content indexing issues.
 - **Semantic Hierarchy**: Structured HTML5 document outline using `<main>`, `<header>`, `<footer>`, `<section>`, and sequential `<h1>`-`<h6>` heading levels.

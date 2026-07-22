@@ -1,6 +1,6 @@
 # Arghya Bhattacharjee - Portfolio & AI Agent Documentation
 
-> Full Stack Developer & MERN Specialist | Patent Co-Holder | B.Tech IT Graduate
+> Software Engineer | Full Stack Developer & MERN Specialist | B.Tech IT Graduate
 
 ## Summary
 Arghya Bhattacharjee is a B.Tech Information Technology graduate specializing in Full Stack Development (MERN Stack), AI/Computer Vision solutions, and IoT integrations. He co-holds a patent for an AI-based Gas Leakage & Fire Alert System and has built multiple end-to-end full stack web applications.

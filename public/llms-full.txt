@@ -2,7 +2,7 @@
 
 ## Personal Information
 - **Full Name**: Arghya Bhattacharjee
-- **Role**: MERN Stack Developer, Full Stack Engineer, Patent Co-Holder
+- **Role**: Software Engineer, MERN Stack Developer, Full Stack Engineer
 - **Website**: https://www.arghya.tech/
 - **Email**: arghyabhattacharjee876@gmail.com
 - **LinkedIn**: https://www.linkedin.com/in/arghya-bhattacharjee876/
