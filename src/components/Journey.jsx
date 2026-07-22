@@ -46,12 +46,12 @@ export default function Journey() {
       className="relative w-full max-w-6xl mx-auto px-6 md:px-12 py-20 scroll-mt-12"
     >
       <div className="text-center mb-16">
-        <h2 className="text-xs font-mono tracking-widest text-cyber-purple uppercase font-bold">
+        <p className="text-xs font-mono tracking-widest text-cyber-purple uppercase font-bold">
           Bio & Timeline
-        </h2>
-        <h3 className="text-3xl md:text-5xl font-extrabold text-theme-text mt-2 font-sans">
+        </p>
+        <h2 className="text-3xl md:text-5xl font-extrabold text-theme-text mt-2 font-sans">
           My Journey
-        </h3>
+        </h2>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -66,12 +66,13 @@ export default function Journey() {
                 width={44}
                 height={44}
                 loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
-            <h4 className="text-lg sm:text-xl font-bold text-theme-text">
+            <h3 className="text-lg sm:text-xl font-bold text-theme-text">
               Professional Summary
-            </h4>
+            </h3>
           </div>
 
           <p className="text-sm text-theme-muted leading-relaxed mt-3">

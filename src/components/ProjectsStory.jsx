@@ -398,12 +398,12 @@ export default function ProjectsStory() {
       className="relative w-full max-w-6xl mx-auto px-6 md:px-12 py-20 scroll-mt-12"
     >
       <div className="text-center mb-16">
-        <h2 className="text-xs font-mono tracking-widest text-cyber-purple uppercase font-bold">
+        <p className="text-xs font-mono tracking-widest text-cyber-purple uppercase font-bold">
           Technical Milestones
-        </h2>
-        <h3 className="text-3xl md:text-5xl font-extrabold text-theme-text mt-2 font-sans">
+        </p>
+        <h2 className="text-3xl md:text-5xl font-extrabold text-theme-text mt-2 font-sans">
           Projects
-        </h3>
+        </h2>
       </div>
 
       <div className="flex flex-col gap-20">

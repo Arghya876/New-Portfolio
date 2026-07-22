@@ -185,12 +185,12 @@ export default function ContactTerminal() {
       className="relative w-full max-w-6xl mx-auto px-6 md:px-12 py-20 scroll-mt-12"
     >
       <div className="text-center mb-16">
-        <h2 className="text-xs font-mono tracking-widest text-cyber-purple uppercase font-bold">
+        <p className="text-xs font-mono tracking-widest text-cyber-purple uppercase font-bold">
           Get In Touch
-        </h2>
-        <h3 className="text-3xl md:text-5xl font-extrabold text-theme-text mt-2 font-sans">
+        </p>
+        <h2 className="text-3xl md:text-5xl font-extrabold text-theme-text mt-2 font-sans">
           Let's Collaborate
-        </h3>
+        </h2>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
@@ -248,9 +248,9 @@ export default function ContactTerminal() {
         <div className="lg:col-span-5 p-6 md:p-8 rounded-xl glass-panel border border-theme-border flex flex-col justify-between">
           <form onSubmit={handleFormSubmit} className="flex flex-col gap-4 text-left">
             
-            <h4 className="text-sm font-mono tracking-widest text-theme-text uppercase font-bold mb-2">
+            <h3 className="text-sm font-mono tracking-widest text-theme-text uppercase font-bold mb-2">
               Send Message
-            </h4>
+            </h3>
 
             {/* Name Input */}
             <div className="flex flex-col gap-1">

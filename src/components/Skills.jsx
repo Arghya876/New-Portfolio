@@ -435,20 +435,20 @@ export default function Skills() {
       className="relative w-full max-w-6xl mx-auto px-6 md:px-12 py-20 scroll-mt-12"
     >
       <div className="text-center mb-16">
-        <h2 className="text-xs font-mono tracking-widest text-cyber-blue uppercase font-bold">
+        <p className="text-xs font-mono tracking-widest text-cyber-blue uppercase font-bold">
           Capabilities
-        </h2>
-        <h3 className="text-3xl md:text-5xl font-extrabold text-theme-text mt-2 font-sans">
+        </p>
+        <h2 className="text-3xl md:text-5xl font-extrabold text-theme-text mt-2 font-sans">
           Skills & Services
-        </h3>
+        </h2>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Left Column: Skills dashboard */}
         <div className="lg:col-span-7 flex flex-col">
-          <h4 className="text-sm font-mono tracking-widest text-theme-muted uppercase font-bold mb-4">
+          <h3 className="text-sm font-mono tracking-widest text-theme-muted uppercase font-bold mb-4">
             Technical Stack
-          </h4>
+          </h3>
 
           {/* Categories Tab selectors */}
           <div className="flex flex-wrap gap-2 mb-6">
@@ -534,9 +534,9 @@ export default function Skills() {
       {/* Creative Hobbies Section (Polaroid Gallery with Lightbox overlay support) */}
       <div className="mt-24 pt-12 border-t border-theme-border/50">
         <div className="text-center mb-12">
-          <h2 className="text-xs font-mono tracking-widest text-cyber-pink uppercase font-bold">
+          <p className="text-xs font-mono tracking-widest text-cyber-pink uppercase font-bold">
             Creative Hobbies
-          </h2>
+          </p>
           <h3 className="text-2xl md:text-4xl font-extrabold text-theme-text mt-1 font-sans">
             Hobby Beyond Code
           </h3>

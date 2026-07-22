@@ -319,7 +319,7 @@ export default function Navbar() {
       </AnimatePresence>
 
       {/* Floating Scroll Progress / Side dot indicator */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-4 items-center">
+      <nav aria-label="Side section navigation" className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-4 items-center">
         <span className="text-[9px] font-mono text-theme-muted uppercase tracking-widest rotate-90 my-4 translate-y-3">
           Story Scroll
         </span>
@@ -346,7 +346,7 @@ export default function Navbar() {
           </button>
         ))}
         <div className="w-[1px] h-12 bg-theme-border" />
-      </div>
+      </nav>
     </>
   )
 }
