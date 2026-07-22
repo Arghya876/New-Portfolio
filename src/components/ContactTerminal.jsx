@@ -202,7 +202,7 @@ export default function ContactTerminal() {
         >
           
           <div className="bg-[#120e28] px-4 py-2.5 border-b border-white/5 flex items-center gap-2">
-            <FaTerminal className="text-cyber-blue" />
+            <FaTerminal aria-hidden="true" className="text-cyber-blue" />
             <span className="text-[10px] text-gray-400 tracking-wider font-bold">guest@arghya: ~ (interactive-sh)</span>
           </div>
 
@@ -320,7 +320,7 @@ export default function ContactTerminal() {
               aria-label="Send contact message from terminal form"
               className="mt-2 w-full py-2.5 rounded bg-gradient-to-r from-cyber-purple to-cyber-blue text-white font-mono text-xs tracking-widest uppercase font-semibold flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-50 cursor-pointer"
             >
-              {formStatus.loading ? 'Dispatching...' : 'Send Message'} <FaArrowRight className="text-[10px]" />
+              {formStatus.loading ? 'Dispatching...' : 'Send Message'} <FaArrowRight aria-hidden="true" className="text-[10px]" />
             </button>
 
             {formStatus.msg && (
@@ -341,7 +341,7 @@ export default function ContactTerminal() {
               className="hover:text-theme-text transition-colors" 
               title="LinkedIn"
             >
-              <FaLinkedin />
+              <FaLinkedin aria-hidden="true" />
             </a>
             <a 
               href="https://github.com/Arghya876" 
@@ -352,7 +352,7 @@ export default function ContactTerminal() {
               className="hover:text-theme-text transition-colors" 
               title="GitHub"
             >
-              <FaGithub />
+              <FaGithub aria-hidden="true" />
             </a>
             <a 
               href="https://www.facebook.com/arghya.bhattacharjee876" 
@@ -363,7 +363,7 @@ export default function ContactTerminal() {
               className="hover:text-theme-text transition-colors" 
               title="Facebook"
             >
-              <FaFacebook />
+              <FaFacebook aria-hidden="true" />
             </a>
             <a 
               href="https://www.instagram.com/arghya.bhattacharjee876/" 
@@ -374,7 +374,7 @@ export default function ContactTerminal() {
               className="hover:text-theme-text transition-colors" 
               title="Instagram"
             >
-              <FaInstagram />
+              <FaInstagram aria-hidden="true" />
             </a>
             <a 
               href="mailto:arghyabhattacharjee876@gmail.com" 
@@ -383,7 +383,7 @@ export default function ContactTerminal() {
               className="hover:text-theme-text transition-colors" 
               title="Email Direct"
             >
-              <FaEnvelope />
+              <FaEnvelope aria-hidden="true" />
             </a>
             <a 
               href="./Arghya_Bhattacharjee_CV.pdf" 
@@ -393,7 +393,7 @@ export default function ContactTerminal() {
               className="hover:text-theme-text transition-colors" 
               title="Download CV"
             >
-              <FaFileDownload />
+              <FaFileDownload aria-hidden="true" />
             </a>
           </div>
         </div>

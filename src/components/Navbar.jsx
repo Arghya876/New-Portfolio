@@ -133,11 +133,10 @@ export default function Navbar() {
             <button
               onClick={() => setIsDark(!isDark)}
               id="theme-toggle-btn"
-              aria-label="Toggle visual color theme between light and dark mode"
+              aria-label={isDark ? "Switch to light theme mode" : "Switch to dark theme mode"}
               className="p-2 rounded-lg border border-theme-border bg-theme-card/30 text-theme-muted hover:text-theme-text hover:bg-theme-card/85 transition-colors cursor-pointer text-sm"
-              title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
-              {isDark ? <FaSun className="text-cyber-yellow" /> : <FaMoon className="text-cyber-purple" />}
+              {isDark ? <FaSun aria-hidden="true" className="text-cyber-yellow" /> : <FaMoon aria-hidden="true" className="text-cyber-purple" />}
             </button>
 
             {/* Social Links (Desktop) */}
@@ -151,7 +150,7 @@ export default function Navbar() {
                 className="text-theme-muted hover:text-theme-text transition-colors text-lg"
                 title="GitHub Profile"
               >
-                <FaGithub />
+                <FaGithub aria-hidden="true" />
               </a>
               <a
                 href="https://www.linkedin.com/in/arghya-bhattacharjee876/"
@@ -162,7 +161,7 @@ export default function Navbar() {
                 className="text-theme-muted hover:text-theme-text transition-colors text-lg"
                 title="LinkedIn Profile"
               >
-                <FaLinkedin />
+                <FaLinkedin aria-hidden="true" />
               </a>
               <a
                 href="https://www.facebook.com/arghya.bhattacharjee876"
@@ -173,7 +172,7 @@ export default function Navbar() {
                 className="text-theme-muted hover:text-theme-text transition-colors text-lg"
                 title="Facebook Profile"
               >
-                <FaFacebook />
+                <FaFacebook aria-hidden="true" />
               </a>
               <a
                 href="https://www.instagram.com/arghya.bhattacharjee876/"
@@ -184,7 +183,7 @@ export default function Navbar() {
                 className="text-theme-muted hover:text-theme-text transition-colors text-lg"
                 title="Instagram Profile"
               >
-                <FaInstagram />
+                <FaInstagram aria-hidden="true" />
               </a>
               <a
                 href="./Arghya_Bhattacharjee_CV.pdf"
@@ -193,7 +192,7 @@ export default function Navbar() {
                 aria-label="Download CV Resume PDF document"
                 className="flex items-center gap-2 px-3 py-1.5 rounded-md border border-cyber-blue/30 text-cyber-blue hover:bg-cyber-blue/10 text-xs font-mono tracking-wider transition-all"
               >
-                <FaFileDownload /> RESUME
+                <FaFileDownload aria-hidden="true" /> RESUME
               </a>
             </div>
 

@@ -349,7 +349,7 @@ function LightboxModal({ gallery, onClose }) {
                 : 'border-white/20 text-white/60 hover:text-white hover:border-white/40'
             }`}
           >
-            {isAutoPlaying ? <FaPause size={8} /> : <FaPlay size={8} />}
+            {isAutoPlaying ? <FaPause size={8} aria-hidden="true" /> : <FaPlay size={8} aria-hidden="true" />}
             {isAutoPlaying ? 'PAUSE' : 'PLAY'}
           </button>
         </div>
@@ -383,7 +383,7 @@ function LightboxModal({ gallery, onClose }) {
           aria-label="View previous creative image"
           className="absolute left-2 md:left-4 z-30 bg-black/60 hover:bg-cyber-blue text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all cursor-pointer active:scale-95 border border-white/10 shadow-lg hover:scale-105"
         >
-          <FaChevronLeft size={18} />
+          <FaChevronLeft size={18} aria-hidden="true" />
         </button>
 
         {/* Right Arrow Button (Rendered after center image to guarantee layering/clickability, absolute, z-30) */}
@@ -393,7 +393,7 @@ function LightboxModal({ gallery, onClose }) {
           aria-label="View next creative image"
           className="absolute right-2 md:right-4 z-30 bg-black/60 hover:bg-cyber-blue text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all cursor-pointer active:scale-95 border border-white/10 shadow-lg hover:scale-105"
         >
-          <FaChevronRight size={18} />
+          <FaChevronRight size={18} aria-hidden="true" />
         </button>
       </div>
 
@@ -485,7 +485,7 @@ export default function Skills() {
                     transition={{ duration: 0.3, delay: index * 0.03 }}
                   >
                     <span className="text-xl sm:text-2xl" style={{ color: skill.color }}>
-                      <Icon />
+                      <Icon aria-hidden="true" />
                     </span>
                     <span className="text-xs sm:text-sm font-bold text-theme-text truncate leading-tight">
                       {skill.name}
@@ -499,9 +499,9 @@ export default function Skills() {
 
         {/* Right Column: Services list */}
         <div className="lg:col-span-5 flex flex-col gap-4">
-          <h4 className="text-sm font-mono tracking-widest text-theme-muted uppercase font-bold mb-1">
+          <h3 className="text-sm font-mono tracking-widest text-theme-muted uppercase font-bold mb-1">
             Solutions Offered
-          </h4>
+          </h3>
 
           {services.map((s, idx) => {
             const Icon = s.icon
@@ -515,7 +515,7 @@ export default function Skills() {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
                 <div className={`p-2.5 rounded-lg bg-theme-card border border-theme-border text-lg shrink-0 ${s.color}`}>
-                  <Icon />
+                  <Icon aria-hidden="true" />
                 </div>
                 <div>
                   <h5 className="text-sm font-bold text-theme-text">

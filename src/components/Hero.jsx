@@ -353,7 +353,7 @@ export default function Hero() {
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <FaChevronDown />
+          <FaChevronDown aria-hidden="true" />
         </motion.div>
       </motion.button>
     </section>

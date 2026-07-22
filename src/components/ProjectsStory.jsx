@@ -438,11 +438,11 @@ export default function ProjectsStory() {
 
                   <div className="mt-4 flex flex-col gap-3">
                     <div className="flex gap-2 text-xs text-theme-muted bg-red-500/5 p-3 rounded-lg border border-red-500/10">
-                      <FaExclamationTriangle className="text-cyber-pink shrink-0 mt-0.5" />
+                      <FaExclamationTriangle aria-hidden="true" className="text-cyber-pink shrink-0 mt-0.5" />
                       <div><span className="font-bold text-theme-text">Problem:</span> {project.problem}</div>
                     </div>
                     <div className="flex gap-2 text-xs text-theme-muted bg-emerald-500/5 p-3 rounded-lg border border-emerald-500/10">
-                      <FaCheckCircle className="text-cyber-green shrink-0 mt-0.5" />
+                      <FaCheckCircle aria-hidden="true" className="text-cyber-green shrink-0 mt-0.5" />
                       <div><span className="font-bold text-theme-text">Solution:</span> {project.solution}</div>
                     </div>
                   </div>
@@ -466,7 +466,7 @@ export default function ProjectsStory() {
                       aria-label={`Access source codebase for ${project.title}`}
                       className="flex items-center gap-2 text-[10px] font-mono tracking-wider border border-theme-border px-3.5 py-2 rounded bg-theme-card/30 hover:bg-cyber-blue/15 text-theme-text transition-all cursor-pointer"
                     >
-                      <FaGithub /> CODEBASE
+                      <FaGithub aria-hidden="true" /> CODEBASE
                     </a>
                     {project.demo !== '#' && (
                       <a
@@ -477,7 +477,7 @@ export default function ProjectsStory() {
                         aria-label={project.title === 'AI-Based LPG Leakage & Fire Alert' ? `View patent document for ${project.title}` : `Visit live deployed demonstration for ${project.title}`}
                         className="flex items-center gap-2 text-[10px] font-mono tracking-wider border border-theme-border px-3.5 py-2 rounded bg-theme-card/30 hover:bg-cyber-purple/15 text-theme-text transition-all cursor-pointer"
                       >
-                        <FaExternalLinkAlt /> {project.title === 'AI-Based LPG Leakage & Fire Alert' ? 'PATENT FILE' : 'LIVE DEMO'}
+                        <FaExternalLinkAlt aria-hidden="true" /> {project.title === 'AI-Based LPG Leakage & Fire Alert' ? 'PATENT FILE' : 'LIVE DEMO'}
                       </a>
                     )}
                   </div>

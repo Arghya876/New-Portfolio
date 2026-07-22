@@ -409,7 +409,7 @@ export default function Achievements() {
         <div className="lg:col-span-7">
           <div className="flex items-center gap-3 mb-6">
             <span className="text-2xl text-cyber-yellow animate-pulse">
-              <FaAward />
+              <FaAward aria-hidden="true" />
             </span>
             <h3 className="text-sm font-mono tracking-widest text-theme-muted uppercase font-bold">
               Unlocked Credentials
@@ -468,9 +468,9 @@ export default function Achievements() {
 
         {/* Right Column: GitHub grid & stats (5 columns) */}
         <div className="lg:col-span-5 flex flex-col gap-6">
-          <h4 className="text-sm font-mono tracking-widest text-theme-muted uppercase font-bold">
+          <h3 className="text-sm font-mono tracking-widest text-theme-muted uppercase font-bold">
             GitHub Commits
-          </h4>
+          </h3>
 
           {/* Grid Box */}
           <div className="p-5 rounded-xl glass-panel border border-theme-border flex flex-col">
@@ -522,7 +522,7 @@ export default function Achievements() {
               return (
                 <div key={s.label} className="p-3 rounded-xl border border-theme-border bg-theme-card/30 text-center">
                   <div className={`text-base flex justify-center mb-1 ${s.color}`}>
-                    <Icon />
+                    <Icon aria-hidden="true" />
                   </div>
                   <span className="text-[9px] font-mono text-theme-muted block uppercase tracking-wider">
                     {s.label}

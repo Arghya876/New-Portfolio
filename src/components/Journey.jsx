@@ -125,9 +125,9 @@ export default function Journey() {
                     {node.year}
                   </span>
                   
-                  <h4 className="text-base font-extrabold text-theme-text mt-0.5 flex items-center gap-2">
-                    <Icon className="text-theme-muted group-hover:text-cyber-blue transition-colors" /> {node.title}
-                  </h4>
+                  <h3 className="text-base font-extrabold text-theme-text mt-0.5 flex items-center gap-2">
+                    <Icon aria-hidden="true" className="text-theme-muted group-hover:text-cyber-blue transition-colors" /> {node.title}
+                  </h3>
                   
                   <span className="text-xs font-mono text-theme-muted block italic mt-0.5">
                     {node.subtitle}
