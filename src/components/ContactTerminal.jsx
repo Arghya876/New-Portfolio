@@ -9,19 +9,16 @@ export default function ContactTerminal() {
     { text: "Type 'help' to review available terminal inputs.", type: 'system' }
   ])
   const [terminalInput, setTerminalInput] = useState('')
-  const terminalEndRef = useRef(null)
+  const terminalContainerRef = useRef(null)
   const inputRef = useRef(null)
-  const isFirstRender = useRef(true)
 
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
   const [formStatus, setFormStatus] = useState({ success: false, loading: false, msg: '' })
 
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false
-      return
+    if (terminalContainerRef.current) {
+      terminalContainerRef.current.scrollTop = terminalContainerRef.current.scrollHeight
     }
-    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [terminalHistory])
 
   const handleTerminalSubmit = (e) => {
@@ -209,7 +206,10 @@ export default function ContactTerminal() {
             <span className="text-[10px] text-gray-400 tracking-wider font-bold">guest@arghya: ~ (interactive-sh)</span>
           </div>
 
-          <div className="flex-1 p-5 overflow-y-auto max-h-[300px] flex flex-col gap-2 no-scrollbar">
+          <div 
+            ref={terminalContainerRef}
+            className="flex-1 p-5 overflow-y-auto max-h-[300px] flex flex-col gap-2 no-scrollbar"
+          >
             {terminalHistory.map((item, index) => (
               <div
                 key={index}
@@ -226,7 +226,6 @@ export default function ContactTerminal() {
                 {item.text}
               </div>
             ))}
-            <div ref={terminalEndRef} />
           </div>
 
           <form onSubmit={handleTerminalSubmit} className="border-t border-white/5 bg-black/30 flex items-center p-3">
