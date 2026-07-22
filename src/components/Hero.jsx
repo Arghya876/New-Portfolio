@@ -285,22 +285,14 @@ export default function Hero() {
                   WebkitBackfaceVisibility: 'hidden'
                 }}
               >
-                {!frontLoaded && (
-                  <div className="absolute inset-1 rounded-full bg-theme-bg flex flex-col items-center justify-center z-10">
-                    <div className="absolute inset-0 bg-gradient-to-r from-theme-card via-theme-border/30 to-theme-card animate-pulse" />
-                    {/* A nice mini-spinner */}
-                    <div className="w-10 h-10 rounded-full border-4 border-cyber-purple border-t-transparent animate-spin relative z-20" />
-                    <span className="text-[10px] text-theme-muted font-mono mt-3 animate-pulse relative z-20">LOADING...</span>
-                  </div>
-                )}
                 <img
                   src="/images/profile_pic.webp"
                   alt="Arghya Bhattacharjee"
                   width={288}
                   height={288}
                   fetchPriority="high"
-                  className={`w-full h-full object-cover rounded-full transition-all duration-700 ease-out ${frontLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
-                  onLoad={() => setFrontLoaded(true)}
+                  decoding="async"
+                  className="w-full h-full object-cover rounded-full"
                 />
               </div>
               
@@ -313,21 +305,14 @@ export default function Hero() {
                   transform: 'rotateY(180deg)'
                 }}
               >
-                {!backLoaded && (
-                  <div className="absolute inset-1 rounded-full bg-theme-bg flex flex-col items-center justify-center z-10">
-                    <div className="absolute inset-0 bg-gradient-to-r from-theme-card via-theme-border/30 to-theme-card animate-pulse" />
-                    <div className="w-10 h-10 rounded-full border-4 border-cyber-blue border-t-transparent animate-spin relative z-20" />
-                    <span className="text-[10px] text-theme-muted font-mono mt-3 animate-pulse relative z-20">LOADING...</span>
-                  </div>
-                )}
                 <img
                   src="/images/Avatar.webp"
                   alt="Arghya Avatar"
                   width={288}
                   height={288}
-                  fetchPriority="high"
-                  className={`w-full h-full object-cover rounded-full transition-all duration-700 ease-out ${backLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
-                  onLoad={() => setBackLoaded(true)}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover rounded-full"
                 />
               </div>
             </div>

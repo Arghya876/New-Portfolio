@@ -177,6 +177,8 @@ function CertDetailModal({ cert, onClose }) {
               <img
                 src={cert.img}
                 alt={cert.title}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
@@ -193,6 +195,8 @@ function CertDetailModal({ cert, onClose }) {
               <img
                 src={cert.img}
                 alt={cert.title}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
             </div>

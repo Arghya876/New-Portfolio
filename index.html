@@ -1,14 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google Tag Manager (GTM) -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','%VITE_GTM_CONTAINER_ID%');</script>
-    <!-- End Google Tag Manager -->
-
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png" />
@@ -31,23 +23,42 @@
     <meta name="robots" content="index, follow" />
     <meta name="google-site-verification" content="4IQH0gesDeeh-fvJTixYTyDgEwWbb0tDY1LxhBna0yU" />
 
-    <!-- Google tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GA_MEASUREMENT_ID%"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', '%VITE_GA_MEASUREMENT_ID%');
-    </script>
-
     <!-- Canonical URL -->
     <link rel="canonical" href="https://www.arghya.tech/" />
     
-    <!-- Google Fonts Preconnect and Links (Performance Optimization) -->
+    <!-- Google Fonts Preconnect and Asynchronous Loading (Performance Optimization) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" />
+    </noscript>
+    
+    <!-- Deferred Google Analytics & Tag Manager -->
+    <script>
+      window.addEventListener('load', function() {
+        var gaId = '%VITE_GA_MEASUREMENT_ID%';
+        if (gaId && !gaId.startsWith('%')) {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaId);
+        }
+
+        var gtmId = '%VITE_GTM_CONTAINER_ID%';
+        if (gtmId && !gtmId.startsWith('%')) {
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer',gtmId);
+        }
+      });
+    </script>
     
     <!-- Open Graph / Facebook / LinkedIn -->
     <meta property="og:type" content="website" />
